@@ -1,0 +1,8 @@
+id,title,section,description
+1,Move (Payments) Capabilities: Unified Multi-Channel Payment Delivery,A,How effectively does the platform provide a unified payment experience across multiple channels for different customer segments?
+2,Move (Payments) Capabilities: Payment Processing Capabilities,A,How well does the platform handle both real-time payments and batch payments for different customer segments?
+3,Move (Payments) Capabilities: Bulk Payment Management,A,How efficiently does the platform manage large-volume transactions or bulk uploads?
+4,Unified Customer Experience,B,How consistently does the platform deliver a unified experience across web mobile and branch channels for all customer segments?
+5,User Interface Quality Evaluation,B,How well-designed and intuitive is the platform's interface across devices and for different customer segments?
+6,API Ecosystem & H2H Connectivity,C,How comprehensive and flexible is the platform's API ecosystem for integration with other financial systems?
+7,Core Banking Integration,C,How seamlessly does the platform integrate with existing core banking systems for various customer segments?

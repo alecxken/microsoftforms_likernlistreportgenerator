@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solutions Evaluation Report Generator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+            padding-top: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .card {
+            transition: transform 0.2s;
+            margin-bottom: 20px;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .step-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 1rem;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 0;
+            margin-top: 30px;
+            border-radius: 8px;
+        }
+        .template-link {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+        .template-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h4>Processing Data...</h4>
+    </div>
+    <div class="container">
+        <div class="header text-center">
+            <div class="container">
+                <h1>Solutions Evaluation Report Generator</h1>
+                <p class="mb-0">Upload your evaluation data to generate interactive reports</p>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="alert alert-info">
+                    <strong>Welcome!</strong> This tool helps you generate interactive evaluation reports from your survey data. Follow the steps below to create your report.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="step-icon">1</div>
+                        <h5 class="card-title">Define Structure</h5>
+                        <p class="card-text">Set up your evaluation structure with sections and questions.</p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#structureModal">Define Structure</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="step-icon">2</div>
+                        <h5 class="card-title">Upload Data</h5>
+                        <p class="card-text">Upload your evaluation data in Excel format.</p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">Upload Data</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="step-icon">3</div>
+                        <h5 class="card-title">View Report</h5>
+                        <p class="card-text">Generate and view your interactive evaluation report.</p>
+                        <button class="btn btn-primary" id="viewReportBtn" disabled>View Report</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="step-icon">4</div>
+                        <h5 class="card-title">Export Reports</h5>
+                        <p class="card-text">Export your reports to PDF for storage and sharing.</p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exportModal">Export Reports</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="section mt-4">
+            <h3>Generated Reports</h3>
+            <div id="reportsList" class="list-group mt-3">
+                <div class="text-center text-muted">
+                    <p>No reports generated yet. Upload your data to create a report.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section mt-4">
+            <h3>Template Files</h3>
+            <p>Download these templates to help you prepare your data:</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Sections Template</h5>
+                            <p class="card-text">Define your evaluation sections and weights.</p>
+                            <a href="/static/templates/sections_template.xlsx" class="template-link" download>Download XLSX</a> | 
+                            <a href="/static/templates/sections_template.csv" class="template-link" download>Download CSV</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Questions Template</h5>
+                            <p class="card-text">Define your evaluation questions.</p>
+                            <a href="/static/templates/questions_template.xlsx" class="template-link" download>Download XLSX</a> | 
+                            <a href="/static/templates/questions_template.csv" class="template-link" download>Download CSV</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Data Template</h5>
+                            <p class="card-text">Format your evaluation data correctly.</p>
+                            <a href="/static/templates/data_template.xlsx" class="template-link" download>Download XLSX</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Structure Modal -->
+    <div class="modal fade" id="structureModal" tabindex="-1" aria-labelledby="structureModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="structureModalLabel">Define Evaluation Structure</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="sectionsFile" class="form-label">Upload Sections</label>
+                                <input type="file" class="form-control" id="sectionsFile" accept=".xlsx,.csv">
+                                <div class="form-text">Upload a file with your sections structure.</div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-header">Sections Template Format</div>
+                                <div class="card-body">
+                                    <p>Your sections file should include:</p>
+                                    <ul>
+                                        <li><strong>section_id</strong>: Unique identifier (e.g., A, B, C)</li>
+                                        <li><strong>title</strong>: Section name</li>
+                                        <li><strong>default_weight</strong>: Default weight percentage</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="questionsFile" class="form-label">Upload Questions</label>
+                                <input type="file" class="form-control" id="questionsFile" accept=".xlsx,.csv">
+                                <div class="form-text">Upload a file with your questions definition.</div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">Questions Template Format</div>
+                                <div class="card-body">
+                                    <p>Your questions file should include:</p>
+                                    <ul>
+                                        <li><strong>id</strong>: Question number (e.g., 1, 2, 3)</li>
+                                        <li><strong>title</strong>: Question text</li>
+                                        <li><strong>section</strong>: Section ID this question belongs to</li>
+                                        <li><strong>description</strong>: Optional description</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveStructureBtn">Save Structure</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Upload Modal -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadModalLabel">Upload Evaluation Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="excelFile" class="form-label">Evaluation Data (Excel)</label>
+                            <input type="file" class="form-control" id="excelFile" name="excel_file" accept=".xlsx" required>
+                            <div class="form-text">Upload your evaluation data in Excel format.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="standaloneQuestions" class="form-label">Standalone Questions</label>
+                            <input type="text" class="form-control" id="standaloneQuestions" name="standalone_questions" 
+                                placeholder="Comments,Suggestions,Feedback">
+                            <div class="form-text">Comma-separated list of column names that are standalone questions (not ratings).</div>
+                        </div>
+                        <!-- Hidden fields for structure files -->
+                        <input type="file" id="hiddenSectionsFile" name="sections_file" style="display:none;">
+                        <input type="file" id="hiddenQuestionsFile" name="questions_file" style="display:none;">
+                        <div class="alert alert-info" id="structureAlert">
+                            <strong>Note:</strong> No structure defined yet. The system will auto-generate a structure based on your data.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Process Data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Add this new modal at the end, before the footer -->
+<div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exportModalLabel">Export Reports</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Select a report to export to PDF:</p>
+                <div class="list-group" id="exportReportsList">
+                    <div class="text-center text-muted">
+                        <p>No reports available for export. Please generate a report first.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-0">Solutions Evaluation Report Generator | &copy; 2025</p>
+        </div>
+    </footer>
+    <script>
+        // Global variables to store form data
+        let sectionsFile = null;
+        let questionsFile = null;
+        let latestReportUrl = null;
+        // Event listener for structure form submission
+        document.getElementById('saveStructureBtn').addEventListener('click', function() {
+            sectionsFile = document.getElementById('sectionsFile').files[0];
+            questionsFile = document.getElementById('questionsFile').files[0];
+            // Update UI to show structure is defined
+            if (sectionsFile || questionsFile) {
+                document.getElementById('structureAlert').innerHTML = 
+                    '<strong>Success:</strong> Structure defined. Ready to upload evaluation data.';
+                document.getElementById('structureAlert').className = 'alert alert-success';
+                // Close the modal
+                bootstrap.Modal.getInstance(document.getElementById('structureModal')).hide();
+            } else {
+                document.getElementById('structureAlert').innerHTML = 
+                    '<strong>Warning:</strong> No structure files uploaded. The system will auto-generate a structure based on your data.';
+                document.getElementById('structureAlert').className = 'alert alert-warning';
+            }
+        });
+        // Event listener for data upload form submission
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Show loading overlay
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            // Transfer structure files to hidden inputs
+            if (sectionsFile) {
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(sectionsFile);
+                document.getElementById('hiddenSectionsFile').files = dataTransfer.files;
+            }
+            if (questionsFile) {
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(questionsFile);
+                document.getElementById('hiddenQuestionsFile').files = dataTransfer.files;
+            }
+            // Submit form via AJAX
+            const formData = new FormData(this);
+            fetch('/process-excel', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide loading overlay
+                document.getElementById('loadingOverlay').style.display = 'none';
+                if (data.success) {
+                    // Enable view report button
+                    document.getElementById('viewReportBtn').disabled = false;
+                    latestReportUrl = '/report-viewer?dataUrl=' + encodeURIComponent(data.data_url);
+                    // Add to reports list
+                    updateReportsList(data.data_url);
+                    // Close the modal
+                    bootstrap.Modal.getInstance(document.getElementById('uploadModal')).hide();
+                    // Show success alert
+                    alert('Data processed successfully! Click "View Report" to see your report.');
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                document.getElementById('loadingOverlay').style.display = 'none';
+                alert('An error occurred: ' + error);
+            });
+        });
+        // Event listener for view report button
+        document.getElementById('viewReportBtn').addEventListener('click', function() {
+            if (latestReportUrl) {
+                window.open(latestReportUrl, '_blank');
+            }
+        });
+        // Function to update reports list
+        function updateReportsList(dataUrl) {
+            const reportsList = document.getElementById('reportsList');
+            // Clear "no reports" message
+            if (reportsList.querySelector('.text-muted')) {
+                reportsList.innerHTML = '';
+            }
+            // Create report item
+            const reportName = dataUrl.split('/').pop();
+            const timestamp = new Date().toLocaleString();
+            const reportItem = document.createElement('a');
+            reportItem.href = '/report-viewer?dataUrl=' + encodeURIComponent(dataUrl);
+            reportItem.className = 'list-group-item list-group-item-action';
+            reportItem.target = '_blank';
+            reportItem.innerHTML = `
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Report: ${reportName}</h5>
+                    <small>${timestamp}</small>
+                </div>
+                <p class="mb-1">Click to view this interactive evaluation report.</p>
+            `;
+            reportsList.prepend(reportItem);
+        }
+
+        
+// Function to update export reports list
+function updateExportReportsList() {
+    const exportList = document.getElementById('exportReportsList');
+    const reportsList = document.getElementById('reportsList');
+    
+    // Clone the reports list content
+    if (reportsList.querySelector('.text-muted')) {
+        // No reports yet
+        exportList.innerHTML = '<div class="text-center text-muted"><p>No reports available for export. Please generate a report first.</p></div>';
+    } else {
+        // Clear existing content
+        exportList.innerHTML = '';
+        
+        // Get all report links
+        const reportLinks = reportsList.querySelectorAll('a.list-group-item');
+        
+        // Create export links
+        reportLinks.forEach(link => {
+            const reportUrl = link.href;
+            const dataUrl = new URL(reportUrl).searchParams.get('dataUrl');
+            const reportName = link.querySelector('h5.mb-1').textContent.replace('Report: ', '');
+            
+            const exportItem = document.createElement('a');
+            exportItem.href = '/export-pdf?dataUrl=' + encodeURIComponent(dataUrl);
+            exportItem.className = 'list-group-item list-group-item-action';
+            exportItem.innerHTML = `
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-1">${reportName}</h6>
+                        <small>Click to export as PDF</small>
+                    </div>
+                    <i class="bi bi-file-pdf text-danger" style="font-size: 1.5rem;"></i>
+                </div>
+            `;
+            
+            exportList.appendChild(exportItem);
+        });
+    }
+}
+
+// Add event listener for export modal
+document.getElementById('exportModal').addEventListener('show.bs.modal', function () {
+    updateExportReportsList();
+});
+
+// Update the updateReportsList function to also update the export list
+const originalUpdateReportsList = updateReportsList;
+updateReportsList = function(dataUrl) {
+    originalUpdateReportsList(dataUrl);
+    updateExportReportsList();
+};
+    </script>
+</body>
+</html>

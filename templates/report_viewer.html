@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solutions Evaluation Report</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/10.0.0/highcharts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/10.0.0/modules/heatmap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/10.0.0/modules/exporting.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .chart-container {
+            min-height: 400px;
+            margin-bottom: 30px;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #3498db;
+        }
+        .nav-pills .nav-link {
+            color: #2c3e50;
+        }
+        .table {
+            font-size: 0.95rem;
+        }
+        .table th {
+            background-color: #f1f8ff;
+        }
+        .slider-container {
+            padding: 20px;
+            background-color: #f1f8ff;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .slider-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .slider-value {
+            font-weight: normal;
+            color: #3498db;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        .highlight {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .card-header {
+            background-color: #f1f8ff;
+        }
+        .vendor-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        #topInsightsContainer .card {
+            height: 100%;
+            transition: transform 0.2s;
+        }
+        #topInsightsContainer .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .key-finding {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #3498db;
+            background-color: #f1f8ff;
+        }
+        .methodology-item {
+            margin-bottom: 15px;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 1rem;
+        }
+        .back-to-home {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .back-to-home:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h4>Loading Report Data...</h4>
+    </div>
+    <a href="/" class="btn btn-primary back-to-home">
+        <i class="bi bi-house-fill"></i> Back to Home
+    </a>
+    <div class="header text-center">
+        <div class="container">
+            <h1 id="reportTitle">Solutions Evaluation Report</h1>
+            <h3>Executive Evaluation Report</h3>
+            <p class="mb-0" id="reportSummary">Interactive analysis of solutions across multiple evaluation criteria</p>
+            <a href="#" class="btn btn-danger back-to-home me-2" id="exportPdfBtn">
+                <i class="bi bi-file-pdf-fill"></i> Export to PDF
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Executive Summary Section -->
+        <div class="section" id="executiveSummarySection">
+            <h2>Executive Summary</h2>
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <p id="executiveSummaryText">This interactive report presents an analysis of the evaluation responses for board management solutions.</p>
+                    <div class="key-finding">
+                        <h5>Key Findings</h5>
+                        <ul id="keyFindingsList">
+                            <!-- This will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                    <div class="participant-list mt-4">
+                        <h5>Evaluation Participants</h5>
+                        <p>The following stakeholders participated in the evaluation process:</p>
+                        <div class="row" id="participantListContainer">
+                            <!-- This will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <p>Use the interactive controls in this report to explore detailed scores, adjust section weights, and identify the optimal solution for your organizational needs.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="mb-0">Top 3 Solutions by Weighted Score</h6>
+                        </div>
+                        <div class="card-body" id="topSolutionsWidget">
+                            <!-- This will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Interactive Weights Section -->
+        <div class="section" id="dynamicComparisonSection">
+            <h2>Dynamic Solution Comparison</h2>
+            <p>Adjust the section weights below to see how the rankings change based on your organizational priorities.</p>
+            <div class="slider-container">
+                <div class="row" id="sliderContainer">
+                    <!-- Section sliders will be generated by JavaScript -->
+                </div>
+                <div class="text-center mt-3">
+                    <button class="btn btn-sm btn-outline-secondary me-2" id="resetWeights">Reset to Default</button>
+                    <button class="btn btn-sm btn-outline-primary me-2" id="equalWeights">Equal Weights</button>
+                    <div class="btn-group d-inline-block" id="weightPresetButtons">
+                        <!-- Preset buttons will be generated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="chart-container" id="weightedRankingsChart"></div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="mb-0">Weighted Rankings</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-striped m-0">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Solution</th>
+                                        <th>Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="weightedRankingsTable">
+                                    <!-- This will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="mb-0">Solutions Standout Votes</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <div id="standoutVotesChart" style="height: 250px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Detailed Analysis Tabs -->
+        <div class="section" id="detailedAnalysisSection">
+            <h2>Detailed Analysis</h2>
+            <ul class="nav nav-pills mb-4" id="analysisTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="by-section-tab" data-bs-toggle="pill" data-bs-target="#by-section" type="button" role="tab">By Section</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="by-question-tab" data-bs-toggle="pill" data-bs-target="#by-question" type="button" role="tab">By Question</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="by-participant-tab" data-bs-toggle="pill" data-bs-target="#by-participant" type="button" role="tab">By Participant</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="heatmap-tab" data-bs-toggle="pill" data-bs-target="#heatmap" type="button" role="tab">Score Heatmap</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="analysisTabContent">
+                <div class="tab-pane fade show active" id="by-section" role="tabpanel">
+                    <div class="chart-container" id="sectionScoresChart"></div>
+                    <div class="row mt-4" id="sectionDetailsContainer">
+                        <!-- Section details will be generated by JavaScript -->
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="by-question" role="tabpanel">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <select class="form-select" id="questionSelector">
+                                <!-- Options will be generated by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-container" id="questionScoresChart"></div>
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h6 class="mb-0" id="questionDetailsTitle">Question Details</h6>
+                        </div>
+                        <div class="card-body" id="questionDetailsContent">
+                            <!-- Question details will be generated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="by-participant" role="tabpanel">
+                    <div class="chart-container" id="participantScoresChart"></div>
+                    <div class="table-responsive mt-4">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr id="participantScoresHeader">
+                                    <th>Participant</th>
+                                    <!-- Vendor columns will be generated by JavaScript -->
+                                    <th>Top Choice</th>
+                                </tr>
+                            </thead>
+                            <tbody id="participantScoresTable">
+                                <!-- Participant data will be generated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="heatmap" role="tabpanel">
+                    <div class="chart-container" id="scoresHeatmap"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Top Insights Section -->
+        <div class="section" id="topInsightsSection">
+            <h2>Key Insights</h2>
+            <div class="row" id="topInsightsContainer">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+        <!-- Methodology Section -->
+        <div class="section" id="methodologySection">
+            <h2>Evaluation Methodology</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Evaluation Framework</h5>
+                    <div id="sectionMethodology">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5>Participants</h5>
+                    <p id="participantCountInfo">Evaluators representing different departments and roles within the organization completed the assessment. Each evaluator rated solutions across various criteria using a 5-point scale:</p>
+                    <ul>
+                        <li><strong>1 - Poor:</strong> Fails to meet basic requirements</li>
+                        <li><strong>2 - Basic:</strong> Meets minimal requirements with limited functionality</li>
+                        <li><strong>3 - Standard:</strong> Satisfactory implementation with adequate functionality</li>
+                        <li><strong>4 - Good:</strong> Strong implementation with comprehensive functionality</li>
+                        <li><strong>5 - Excellent:</strong> Outstanding implementation with superior functionality</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-0">Solutions Evaluation Report | <span id="reportDate">Generated March 2025</span></p>
+        </div>
+    </footer>
+    <script src="/static/js/report-viewer.js"></script>
+    <script>
+        // Add event listener for PDF export button
+        document.getElementById('exportPdfBtn').addEventListener('click', function() {
+            // Show loading overlay
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            document.getElementById('loadingOverlay').querySelector('h4').textContent = 'Generating PDF...';
+            
+            // Get the data URL from the current page URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const dataUrl = urlParams.get('dataUrl');
+            
+            if (dataUrl) {
+                // Open PDF export URL in a new tab
+                window.location.href = '/export-pdf?dataUrl=' + encodeURIComponent(dataUrl);
+                
+                // Hide loading overlay after a delay
+                setTimeout(function() {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 2000);
+            } else {
+                alert('No data URL found. Please reload the page and try again.');
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

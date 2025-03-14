@@ -4,6 +4,22 @@ import json
 import re
 import os
 from werkzeug.utils import secure_filename
+from flask import send_file
+import matplotlib
+matplotlib.use('Agg')  # Set the backend to Agg for server environments
+import matplotlib.pyplot as plt
+import numpy as np
+import tempfile
+import base64
+from io import BytesIO
+from reportlab.lib.pagesizes import letter, A4
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, Table, TableStyle
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+import os
+from datetime import datetime
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.config['UPLOAD_FOLDER'] = 'uploads'
@@ -291,6 +307,477 @@ def extract_data(excel_path, standalone_questions, sections_data={}, questions_d
     }
 
     return output_data
+try:
+    pdfmetrics.registerFont(TTFont('Avenir-Book', 'Avenir-Book.ttf'))
+    font_name = 'Avenir-Book'
+except:
+    font_name = 'Helvetica'
 
+# Add this route to your Flask app
+@app.route('/export-pdf')
+def export_pdf():
+    data_url = request.args.get('dataUrl')
+    if not data_url:
+        return "No data URL provided", 400
+    
+    # Load the JSON data
+    try:
+        with open(os.path.join(app.root_path, data_url.lstrip('/')), 'r') as f:
+            report_data = json.load(f)
+    except Exception as e:
+        return f"Error loading data: {str(e)}", 500
+    
+    # Create a PDF
+    pdf_path = generate_pdf_report(report_data)
+    
+    # Get filename from the data_url
+    filename = os.path.splitext(os.path.basename(data_url))[0]
+    
+    # Send the PDF file
+    return send_file(
+        pdf_path,
+        as_attachment=True,
+        download_name=f"{filename}_report.pdf",
+        mimetype='application/pdf'
+    )
+
+def generate_pdf_report(data):
+    """Generate a PDF report from the evaluation data"""
+    
+    # Extract data
+    vendors = data.get('vendors', [])
+    participants = data.get('participants', [])
+    questions = data.get('questions', [])
+    question_scores = data.get('question_scores', {})
+    participant_scores = data.get('participant_scores', {})
+    sections = data.get('sections', {})
+    
+    # Create a temporary file
+    temp_pdf = tempfile.NamedTemporaryFile(delete=False, suffix='.pdf')
+    
+    # Create PDF document
+    doc = SimpleDocTemplate(
+        temp_pdf.name,
+        pagesize=A4,
+        rightMargin=72,
+        leftMargin=72,
+        topMargin=72,
+        bottomMargin=72
+    )
+    
+    # Create styles
+    styles = getSampleStyleSheet()
+    
+    # Create custom styles with Avenir font
+    title_style = ParagraphStyle(
+        'Title',
+        parent=styles['Title'],
+        fontName=font_name,
+        fontSize=16,
+        spaceAfter=16
+    )
+    
+    heading_style = ParagraphStyle(
+        'Heading1',
+        parent=styles['Heading1'],
+        fontName=font_name,
+        fontSize=14,
+        spaceAfter=12
+    )
+    
+    subheading_style = ParagraphStyle(
+        'Heading2',
+        parent=styles['Heading2'],
+        fontName=font_name,
+        fontSize=12,
+        spaceAfter=10
+    )
+    
+    normal_style = ParagraphStyle(
+        'Normal',
+        parent=styles['Normal'],
+        fontName=font_name,
+        fontSize=10,
+        spaceAfter=8
+    )
+    
+    # Initialize the elements list for our PDF
+    elements = []
+    
+    # Title
+    elements.append(Paragraph(f"Solutions Evaluation Report: {' vs '.join(vendors)}", title_style))
+    elements.append(Spacer(1, 12))
+    
+    # Date and summary
+    date_string = datetime.now().strftime("%B %d, %Y")
+    elements.append(Paragraph(f"Generated on: {date_string}", normal_style))
+    elements.append(Spacer(1, 12))
+    
+    summary_text = f"This report presents an analysis of the evaluation responses from {len(participants)} participants who assessed {len(vendors)} solutions: {', '.join(vendors)}. The solutions were evaluated across {len(questions)} criteria organized in {len(sections)} sections."
+    elements.append(Paragraph(summary_text, normal_style))
+    elements.append(Spacer(1, 24))
+    
+    # Calculate overall scores
+    section_weights = {section: sections[section].get('defaultWeight', 0) for section in sections}
+    total_weight = sum(section_weights.values())
+    if total_weight > 0:
+        for section in section_weights:
+            section_weights[section] = section_weights[section] / total_weight * 100
+    
+    # Calculate section scores
+    section_scores = {}
+    for section_id, section_info in sections.items():
+        section_scores[section_id] = {}
+        for vendor in vendors:
+            total_score = 0
+            count = 0
+            for q_id in section_info.get('questions', []):
+                if str(q_id) in question_scores and vendor in question_scores[str(q_id)]:
+                    total_score += question_scores[str(q_id)][vendor]
+                    count += 1
+            section_scores[section_id][vendor] = total_score / count if count > 0 else 0
+    
+    # Calculate weighted scores
+    weighted_scores = {}
+    for vendor in vendors:
+        score = 0
+        for section_id, weight in section_weights.items():
+            if section_id in section_scores and vendor in section_scores[section_id]:
+                score += section_scores[section_id][vendor] * (weight / 100)
+        weighted_scores[vendor] = score
+    
+    # Sort vendors by weighted score
+    sorted_vendors = sorted(vendors, key=lambda v: weighted_scores.get(v, 0), reverse=True)
+    
+    # Executive Summary section
+    elements.append(Paragraph("1. Executive Summary", heading_style))
+    elements.append(Spacer(1, 8))
+    
+    # Key findings
+    elements.append(Paragraph("Key Findings:", subheading_style))
+    
+    if len(sorted_vendors) > 0:
+        top_vendor = sorted_vendors[0]
+        top_score = weighted_scores.get(top_vendor, 0)
+        elements.append(Paragraph(f"• Top solution: {top_vendor} with a weighted score of {top_score:.2f}.", normal_style))
+    
+    if len(sorted_vendors) > 1:
+        second_vendor = sorted_vendors[1]
+        second_score = weighted_scores.get(second_vendor, 0)
+        elements.append(Paragraph(f"• Runner-up: {second_vendor} with a weighted score of {second_score:.2f}.", normal_style))
+    
+    elements.append(Spacer(1, 12))
+    
+    # Add chart for overall scores
+    chart_path = create_bar_chart(
+        sorted_vendors, 
+        [weighted_scores.get(v, 0) for v in sorted_vendors],
+        "Overall Weighted Scores",
+        "Solution",
+        "Score (1-5)"
+    )
+    elements.append(Paragraph("Overall Solution Rankings:", subheading_style))
+    elements.append(Image(chart_path, width=400, height=300))
+    elements.append(Spacer(1, 16))
+    
+    # Section Performance
+    elements.append(Paragraph("2. Section Performance", heading_style))
+    elements.append(Spacer(1, 8))
+    
+    for section_id, section_info in sections.items():
+        section_title = section_info.get('title', f'Section {section_id}')
+        elements.append(Paragraph(f"Section {section_id}: {section_title}", subheading_style))
+        
+        # Create a table for section scores
+        section_data = [["Solution", "Score"]]
+        section_vendors = sorted(
+            vendors, 
+            key=lambda v: section_scores.get(section_id, {}).get(v, 0), 
+            reverse=True
+        )
+        
+        for vendor in section_vendors:
+            score = section_scores.get(section_id, {}).get(vendor, 0)
+            section_data.append([vendor, f"{score:.2f}"])
+        
+        # Create the table
+        table = Table(section_data, colWidths=[300, 100])
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+            ('ALIGN', (1, 0), (1, -1), 'CENTER'),
+            ('FONTNAME', (0, 0), (-1, 0), font_name),
+            ('FONTSIZE', (0, 0), (-1, -1), 10),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('GRID', (0, 0), (-1, -1), 1, colors.lightgrey),
+        ]))
+        elements.append(table)
+        elements.append(Spacer(1, 8))
+        
+        # Create a chart for the section
+        chart_path = create_bar_chart(
+            section_vendors, 
+            [section_scores.get(section_id, {}).get(v, 0) for v in section_vendors],
+            f"{section_title} Scores",
+            "Solution",
+            "Score (1-5)"
+        )
+        elements.append(Image(chart_path, width=400, height=200))
+        elements.append(Spacer(1, 16))
+    
+    # Question Performance
+    elements.append(Paragraph("3. Question Performance", heading_style))
+    elements.append(Spacer(1, 8))
+    
+    # Group questions by section
+    questions_by_section = {}
+    for q in questions:
+        section = q.get('section')
+        if section not in questions_by_section:
+            questions_by_section[section] = []
+        questions_by_section[section].append(q)
+    
+    for section_id, section_questions in questions_by_section.items():
+        section_title = sections.get(section_id, {}).get('title', f'Section {section_id}')
+        elements.append(Paragraph(f"Section {section_id}: {section_title}", subheading_style))
+        elements.append(Spacer(1, 8))
+        
+        for question in section_questions:
+            q_id = str(question.get('id'))
+            q_title = question.get('title', f'Question {q_id}')
+            
+            elements.append(Paragraph(f"Q{q_id}: {q_title}", normal_style))
+            
+            if q_id in question_scores:
+                # Sort vendors by question score
+                q_vendors = sorted(
+                    vendors, 
+                    key=lambda v: question_scores[q_id].get(v, 0), 
+                    reverse=True
+                )
+                
+                # Create a table for question scores
+                q_data = [["Solution", "Score"]]
+                for vendor in q_vendors:
+                    score = question_scores[q_id].get(vendor, 0)
+                    q_data.append([vendor, f"{score:.2f}"])
+                
+                # Create the table
+                table = Table(q_data, colWidths=[300, 100])
+                table.setStyle(TableStyle([
+                    ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+                    ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
+                    ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+                    ('ALIGN', (1, 0), (1, -1), 'CENTER'),
+                    ('FONTNAME', (0, 0), (-1, 0), font_name),
+                    ('FONTSIZE', (0, 0), (-1, -1), 10),
+                    ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
+                    ('GRID', (0, 0), (-1, -1), 1, colors.lightgrey),
+                ]))
+                elements.append(table)
+                elements.append(Spacer(1, 8))
+            
+            elements.append(Spacer(1, 8))
+        
+        elements.append(Spacer(1, 16))
+    
+    # Participant Assessments
+    elements.append(Paragraph("4. Participant Assessments", heading_style))
+    elements.append(Spacer(1, 8))
+    
+    # Average scores by participant
+    participant_avgs = {}
+    for p_name, scores in participant_scores.items():
+        participant_avgs[p_name] = {
+            vendor: scores.get(vendor, 0)
+            for vendor in vendors
+        }
+    
+    # Create a heatmap for participant scores
+    if len(participants) > 0 and len(vendors) > 0:
+        heatmap_path = create_heatmap(
+            participants, 
+            vendors,
+            [[participant_avgs.get(p, {}).get(v, 0) for v in vendors] for p in participants],
+            "Participant Evaluation Heatmap",
+            "Participant",
+            "Solution"
+        )
+        elements.append(Image(heatmap_path, width=450, height=300))
+        elements.append(Spacer(1, 16))
+    
+    # Calculate top choice by participant
+    top_choices = {}
+    for p_name, scores in participant_avgs.items():
+        if scores:
+            top_vendor = max(scores.items(), key=lambda x: x[1])[0]
+            top_choices[p_name] = top_vendor
+    
+    # Count vendor selections
+    vendor_counts = {v: 0 for v in vendors}
+    for vendor in top_choices.values():
+        if vendor in vendor_counts:
+            vendor_counts[vendor] += 1
+    
+    # Create pie chart for top choices
+    if sum(vendor_counts.values()) > 0:
+        pie_path = create_pie_chart(
+            vendor_counts.keys(),
+            vendor_counts.values(),
+            "Participants' Top Choices"
+        )
+        elements.append(Paragraph("Participants' Top Choices:", subheading_style))
+        elements.append(Image(pie_path, width=400, height=300))
+        elements.append(Spacer(1, 16))
+    
+    # Methodology
+    elements.append(Paragraph("5. Evaluation Methodology", heading_style))
+    elements.append(Spacer(1, 8))
+    
+    methodology_text = f"""
+    This evaluation was conducted with {len(participants)} participants who assessed {len(vendors)} solutions: {', '.join(vendors)}.
+    The assessment was structured across {len(sections)} sections with a total of {len(questions)} evaluation criteria.
+    
+    Participants rated each solution on a scale of 1-5:
+    1 - Poor: Fails to meet basic requirements
+    2 - Basic: Meets minimal requirements with limited functionality
+    3 - Standard: Satisfactory implementation with adequate functionality
+    4 - Good: Strong implementation with comprehensive functionality
+    5 - Excellent: Outstanding implementation with superior functionality
+    
+    Section weights used for the overall rankings:
+    """
+    elements.append(Paragraph(methodology_text, normal_style))
+    
+    # Section weights table
+    weights_data = [["Section", "Title", "Weight"]]
+    for section_id, section_info in sections.items():
+        title = section_info.get('title', f'Section {section_id}')
+        weight = section_weights.get(section_id, 0)
+        weights_data.append([f"Section {section_id}", title, f"{weight:.0f}%"])
+    
+    # Create the table
+    table = Table(weights_data, colWidths=[100, 300, 100])
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('ALIGN', (2, 0), (2, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), font_name),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('GRID', (0, 0), (-1, -1), 1, colors.lightgrey),
+    ]))
+    elements.append(table)
+    
+    # Build the PDF
+    doc.build(elements)
+    
+    return temp_pdf.name
+
+def create_bar_chart(categories, values, title, xlabel, ylabel):
+    """Create a bar chart and return the path to the saved image"""
+    plt.figure(figsize=(8, 6))
+    
+    # Create bar plot
+    bars = plt.bar(categories, values)
+    
+    # Add value labels on top of bars
+    for bar in bars:
+        height = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width()/2., height + 0.1,
+                f'{height:.2f}', ha='center', fontsize=9)
+    
+    # Add labels and title
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.ylim(0, 5.5)  # Assuming 5-point scale with space for labels
+    
+    # Rotate x-axis labels for better readability if needed
+    if len(categories) > 3:
+        plt.xticks(rotation=45, ha='right')
+    
+    plt.tight_layout()
+    
+    # Save the chart to a temporary file
+    temp_chart = tempfile.NamedTemporaryFile(delete=False, suffix='.png')
+    plt.savefig(temp_chart.name, dpi=150)
+    plt.close()
+    
+    return temp_chart.name
+
+def create_heatmap(rows, columns, data, title, ylabel, xlabel):
+    """Create a heatmap and return the path to the saved image"""
+    plt.figure(figsize=(10, 8))
+    
+    # Create heatmap
+    plt.imshow(data, cmap='YlGn', aspect='auto', vmin=1, vmax=5)
+    
+    # Add colorbar
+    cbar = plt.colorbar()
+    cbar.set_label('Score (1-5)')
+    
+    # Add labels and title
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    
+    # Set tick positions and labels
+    plt.yticks(range(len(rows)), rows)
+    plt.xticks(range(len(columns)), columns)
+    
+    # Add text annotations in each cell
+    for i in range(len(rows)):
+        for j in range(len(columns)):
+            plt.text(j, i, f"{data[i][j]:.1f}", 
+                    ha="center", va="center", color="black", fontsize=8)
+    
+    plt.tight_layout()
+    
+    # Save the chart to a temporary file
+    temp_chart = tempfile.NamedTemporaryFile(delete=False, suffix='.png')
+    plt.savefig(temp_chart.name, dpi=150)
+    plt.close()
+    
+    return temp_chart.name
+
+def create_pie_chart(labels, values, title):
+    """Create a pie chart and return the path to the saved image"""
+    plt.figure(figsize=(8, 6))
+    
+    # Filter out zero values
+    non_zero_data = [(label, value) for label, value in zip(labels, values) if value > 0]
+    
+    if non_zero_data:
+        labels, values = zip(*non_zero_data)
+        
+        # Create pie chart
+        plt.pie(values, labels=labels, autopct='%1.1f%%', startangle=90, 
+                shadow=False, explode=[0.05]*len(labels))
+        
+        # Add title
+        plt.title(title)
+        plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
+        
+        plt.tight_layout()
+        
+        # Save the chart to a temporary file
+        temp_chart = tempfile.NamedTemporaryFile(delete=False, suffix='.png')
+        plt.savefig(temp_chart.name, dpi=150)
+        plt.close()
+        
+        return temp_chart.name
+    else:
+        # Create an empty chart if no data
+        plt.text(0.5, 0.5, 'No data available', ha='center', va='center')
+        
+        # Save the chart to a temporary file
+        temp_chart = tempfile.NamedTemporaryFile(delete=False, suffix='.png')
+        plt.savefig(temp_chart.name, dpi=150)
+        plt.close()
+        
+        return temp_chart.name
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

@@ -10,6 +10,88 @@ let sections = {};
 let sectionWeights = {};
 let sectionScores = {};
 
+
+// Add this code at the beginning of the script, after your global variables
+
+// Define Ecobank brand colors for charts
+const ecobankColors = {
+    blue: '#0079C1',    // Primary blue
+    green: '#008539',   // Secondary green
+    white: '#FFFFFF',   // White
+    lightGray: '#F5F5F5', // Light gray
+    
+    // Additional shades for charts
+    darkBlue: '#005a8c',
+    lightBlue: '#4ca8d8',
+    darkGreen: '#006227',
+    lightGreen: '#4caf7c',
+    gray: '#666666'
+  };
+  
+  // Create Highcharts theme with Ecobank colors
+  const ecobankHighchartsTheme = {
+    colors: [
+      ecobankColors.blue,
+      ecobankColors.green,
+      ecobankColors.darkBlue,
+      ecobankColors.lightGreen,
+      ecobankColors.lightBlue,
+      ecobankColors.darkGreen
+    ],
+    
+    chart: {
+      backgroundColor: ecobankColors.white,
+      style: {
+        fontFamily: 'Arial, sans-serif'
+      }
+    },
+    
+    title: {
+      style: {
+        color: ecobankColors.blue,
+        fontWeight: 'bold'
+      }
+    },
+    
+    subtitle: {
+      style: {
+        color: ecobankColors.gray
+      }
+    },
+    
+    legend: {
+      itemStyle: {
+        color: '#333333'
+      },
+      itemHoverStyle: {
+        color: ecobankColors.blue
+      }
+    },
+    
+    colorAxis: {
+      min: 1,
+      max: 5,
+      stops: [
+        [0, '#ffdfdf'],    // Light red for low scores
+        [0.5, '#ffffff'],  // White for middle scores
+        [1, ecobankColors.lightGreen]  // Light green for high scores
+      ]
+    },
+    
+    plotOptions: {
+      spline: {
+        color: ecobankColors.blue,
+        marker: {
+          fillColor: ecobankColors.white,
+          lineColor: ecobankColors.blue,
+          lineWidth: 2
+        }
+      },
+      series: {
+        borderColor: ecobankColors.blue
+      }
+    }
+  };
 // Initialize when document is ready
 document.addEventListener('DOMContentLoaded', function() {
     // Show loading overlay

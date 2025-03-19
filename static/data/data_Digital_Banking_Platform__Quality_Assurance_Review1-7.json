@@ -1,0 +1,330 @@
+{
+    "vendors": [
+        "Intellect",
+        "Nucleus"
+    ],
+    "participants": [
+        "Cyril Amega",
+        "Michael AMOAH",
+        "Jean-Pierre AKA",
+        "Hamna ATCHULO",
+        "Tayesa BANDA",
+        "Kofi WIAFE\u2013ANNOR",
+        "CRENTSIL CRENTSIL EKOW"
+    ],
+    "questions": [
+        {
+            "id": 1,
+            "title": "Move (Payments) Capabilities: Unified Multi-Channel Payment Delivery",
+            "section": "A"
+        },
+        {
+            "id": 2,
+            "title": "Move (Payments) Capabilities: Payment Processing Capabilities ~ Real-Time & Batch Payment Processing",
+            "section": "A"
+        },
+        {
+            "id": 3,
+            "title": "Move (Payments) Capabilities: Bulk Payment Management ~ High-Volume Transaction Processing",
+            "section": "A"
+        },
+        {
+            "id": 4,
+            "title": "Move (Payments) Capabilities: Payment Product Coverage ~ Comprehensive Payment Offering Support",
+            "section": "A"
+        },
+        {
+            "id": 5,
+            "title": "Trade Capabilities: Trade Lifecycle Management ~ End-to-End Trade Process Support",
+            "section": "A"
+        },
+        {
+            "id": 6,
+            "title": "Trade Capabilities: Trade Product Diversity ~ Multi-Product Trade Support",
+            "section": "A"
+        },
+        {
+            "id": 7,
+            "title": "Account & Loan Management: Account & Loan Product Support ~ Comprehensive Financial Product Management",
+            "section": "A"
+        },
+        {
+            "id": 8,
+            "title": "Direct Debit Management ~ Direct Debit Capabilities ~ Automated Payment Collection",
+            "section": "A"
+        },
+        {
+            "id": 9,
+            "title": "Unified Product Experience ~ Integrated Product Experience ~ Cross-Product/Segment Cohesiveness",
+            "section": "A"
+        },
+        {
+            "id": 10,
+            "title": "Reconciliation Capabilities: End-to-End Transaction Reconciliation",
+            "section": "A"
+        },
+        {
+            "id": 11,
+            "title": "Unified Customer Experience ~ Cross-Channel Consistency",
+            "section": "B"
+        },
+        {
+            "id": 12,
+            "title": "User Interface Quality Evaluation Focus: Design Quality and Usability",
+            "section": "B"
+        },
+        {
+            "id": 13,
+            "title": "Customer Journey Management: End-to-End Transaction Flows",
+            "section": "B"
+        },
+        {
+            "id": 14,
+            "title": "Personalization Capabilities: Segment-Specific Customization",
+            "section": "B"
+        },
+        {
+            "id": 15,
+            "title": "Accessibility and Language Support: Inclusive Design and Multilingual Capabilities",
+            "section": "B"
+        },
+        {
+            "id": 16,
+            "title": "API Ecosystem & H2H Connectivity: Comprehensive API Framework and Developer Experience Question",
+            "section": "C"
+        },
+        {
+            "id": 17,
+            "title": "Host to Host Ecosystem: Enterprise System Connectivity Question",
+            "section": "C"
+        },
+        {
+            "id": 18,
+            "title": "Application Architecture: Modern Design Principles Question",
+            "section": "C"
+        },
+        {
+            "id": 19,
+            "title": "Core Banking Integration: Primary Banking System Connectivity Question",
+            "section": "C"
+        },
+        {
+            "id": 20,
+            "title": "Internal Application (Non-Core Banking) Integration: Enterprise Application Connectivity Question",
+            "section": "C"
+        },
+        {
+            "id": 21,
+            "title": "Third-Party Integration: External System Connectivity",
+            "section": "C"
+        },
+        {
+            "id": 22,
+            "title": "Data Management & Analytics: Data Architecture and Insights Generation",
+            "section": "C"
+        },
+        {
+            "id": 23,
+            "title": "Scalability & Performance: System Growth Capability",
+            "section": "C"
+        },
+        {
+            "id": 24,
+            "title": "Audit Trail Capabilities: Comprehensive Activity Tracking and Compliance",
+            "section": "C"
+        },
+        {
+            "id": 25,
+            "title": "Deployment Flexibility: Hosting and Deployment Options",
+            "section": "C"
+        }
+    ],
+    "question_scores": {
+        "1": {
+            "Intellect": 4.0,
+            "Nucleus": 3.43
+        },
+        "2": {
+            "Intellect": 3.86,
+            "Nucleus": 3.29
+        },
+        "3": {
+            "Intellect": 3.86,
+            "Nucleus": 3.57
+        },
+        "4": {
+            "Intellect": 4.29,
+            "Nucleus": 3.14
+        },
+        "5": {
+            "Intellect": 3.86,
+            "Nucleus": 3.0
+        },
+        "6": {
+            "Intellect": 3.71,
+            "Nucleus": 3.14
+        },
+        "7": {
+            "Intellect": 3.43,
+            "Nucleus": 3.43
+        },
+        "8": {
+            "Intellect": 3.43,
+            "Nucleus": 2.71
+        },
+        "9": {
+            "Intellect": 3.71,
+            "Nucleus": 2.86
+        },
+        "10": {
+            "Intellect": 3.57,
+            "Nucleus": 3.14
+        },
+        "11": {
+            "Intellect": 3.71,
+            "Nucleus": 3.0
+        },
+        "12": {
+            "Intellect": 4.0,
+            "Nucleus": 3.43
+        },
+        "13": {
+            "Intellect": 4.0,
+            "Nucleus": 3.14
+        },
+        "14": {
+            "Intellect": 3.43,
+            "Nucleus": 2.71
+        },
+        "15": {
+            "Intellect": 3.57,
+            "Nucleus": 3.14
+        },
+        "16": {
+            "Intellect": 3.43,
+            "Nucleus": 3.14
+        },
+        "17": {
+            "Intellect": 3.57,
+            "Nucleus": 3.14
+        },
+        "18": {
+            "Intellect": 3.57,
+            "Nucleus": 3.43
+        },
+        "19": {
+            "Intellect": 3.14,
+            "Nucleus": 2.86
+        },
+        "20": {
+            "Intellect": 3.43,
+            "Nucleus": 2.86
+        },
+        "21": {
+            "Intellect": 3.29,
+            "Nucleus": 2.57
+        },
+        "22": {
+            "Intellect": 3.14,
+            "Nucleus": 2.86
+        },
+        "23": {
+            "Intellect": 3.14,
+            "Nucleus": 2.86
+        },
+        "24": {
+            "Intellect": 3.43,
+            "Nucleus": 3.14
+        },
+        "25": {
+            "Intellect": 3.14,
+            "Nucleus": 2.71
+        }
+    },
+    "participant_scores": {
+        "Cyril Amega": {
+            "Intellect": 3.96,
+            "Nucleus": 3.76
+        },
+        "Michael AMOAH": {
+            "Intellect": 4.84,
+            "Nucleus": 3.64
+        },
+        "Jean-Pierre AKA": {
+            "Intellect": 3.8,
+            "Nucleus": 2.88
+        },
+        "Hamna ATCHULO": {
+            "Intellect": 4.32,
+            "Nucleus": 3.32
+        },
+        "Tayesa BANDA": {
+            "Intellect": 2.12,
+            "Nucleus": 2.12
+        },
+        "Kofi WIAFE\u2013ANNOR": {
+            "Intellect": 3.72,
+            "Nucleus": 3.44
+        },
+        "CRENTSIL CRENTSIL EKOW": {
+            "Intellect": 2.36,
+            "Nucleus": 2.32
+        }
+    },
+    "standalone_questions": {
+        "Language": [
+            "English (United States)\u200e",
+            "English (United States)\u200e",
+            "English (United States)\u200e",
+            "English (United States)\u200e",
+            "English (United States)\u200e",
+            "English (United States)\u200e",
+            "English (United States)\u200e"
+        ]
+    },
+    "sections": {
+        "A": {
+            "title": "Section A",
+            "questions": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+            ],
+            "defaultWeight": 33
+        },
+        "B": {
+            "title": "Section B",
+            "questions": [
+                11,
+                12,
+                13,
+                14,
+                15
+            ],
+            "defaultWeight": 33
+        },
+        "C": {
+            "title": "Section C",
+            "questions": [
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25
+            ],
+            "defaultWeight": 33
+        }
+    }
+}

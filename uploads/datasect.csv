@@ -1,0 +1,6 @@
+section_id,title,default_weight
+A,Core Functional Capabilities,35
+B,User Interface & User Experience (Simplicity),25
+C,Risk Management & Advanced Capabilities,20
+D,Technical Architecture & Integration,20
+E,Additional Capability (No Weight),0

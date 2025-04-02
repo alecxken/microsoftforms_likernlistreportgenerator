@@ -1,0 +1,1631 @@
+{
+    "vendors": [
+        "AxeFinance",
+        "Azentio ONELending (Kastle)",
+        "Fusion LoanIQ (Finastra)",
+        "Mambu",
+        "Newgen LMS"
+    ],
+    "participants": [
+        "Maurice King\u2019ori"
+    ],
+    "questions": [
+        {
+            "id": 1,
+            "title": "End-to-End Loan Lifecycle Management ~ Loan Lifecycle Coverage",
+            "section": "A",
+            "description": "How effectively does the solution support the entire loan lifecycle from origination (including prospecting) to closure across different lending products and customer segments?"
+        },
+        {
+            "id": 2,
+            "title": "End-to-End Loan Lifecycle Management ~ Loan Modification and Historical Tracking",
+            "section": "A",
+            "description": "Can the system modify and extend existing loans without requiring closure and reopening while tracking historical loans and their performance including defaults and write-offs?"
+        },
+        {
+            "id": 3,
+            "title": "End-to-End Loan Lifecycle Management ~ Multiple Product Management Flexibility",
+            "section": "A",
+            "description": "Are there any restrictions on the number of active loan products of the same type per customer?"
+        },
+        {
+            "id": 4,
+            "title": "End-to-End Loan Lifecycle Management ~ Multi-channel Application Processing Efficiency",
+            "section": "A",
+            "description": "How efficiently does the platform handle application intake validation document collection credit assessment and underwriting across different channels?"
+        },
+        {
+            "id": 5,
+            "title": "End-to-End Loan Lifecycle Management ~ Product Configuration and Segment-based Workflows",
+            "section": "A",
+            "description": "Can new loan products parameters and decisioning rules be configured easily? Does the system support automated pre-approvals and different workflows for borrower segments?"
+        },
+        {
+            "id": 6,
+            "title": "End-to-End Loan Lifecycle Management ~ Document Data Extraction Capabilities",
+            "section": "A",
+            "description": "Can the platform extract and utilize financial data from uploaded documents (e.g. bank statements payslips)?"
+        },
+        {
+            "id": 7,
+            "title": "End-to-End Loan Lifecycle Management ~ High-volume Multi-segment Processing",
+            "section": "A",
+            "description": "How effectively does the platform manage high volumes of loan applications across multiple segments (Personal SME Corporate) supporting concurrent processing across multiple channels?"
+        },
+        {
+            "id": 8,
+            "title": "End-to-End Loan Lifecycle Management ~ Cross-channel Continuity and Tracking",
+            "section": "A",
+            "description": "Can applications be started on one channel and completed on another without data loss? What tracking and alerting capabilities exist for applicants and staff regarding application status?"
+        },
+        {
+            "id": 9,
+            "title": "Automated Decisioning ~ Decision Engine Sophistication",
+            "section": "A",
+            "description": "How sophisticated is the platform's decision engine in handling automated loan decisions including multi-parameter decisioning?"
+        },
+        {
+            "id": 10,
+            "title": "Automated Decisioning ~ External Decision Integration",
+            "section": "A",
+            "description": "Does the platform provide APIs for integrating automated decision-making into external workflows and alternative scoring models?"
+        },
+        {
+            "id": 11,
+            "title": "Automated Disbursement & Loan Servicing ~ Data Source Integration for Risk Assessment",
+            "section": "A",
+            "description": "How effectively does the system incorporate internal and external data sources for credit scoring and risk assessment?"
+        },
+        {
+            "id": 12,
+            "title": "Automated Disbursement & Loan Servicing ~ Credit Policy Optimization and Management",
+            "section": "A",
+            "description": "Can the platform support test-and-learn strategies for optimizing credit policies and how easily can business users modify and enforce lending policies credit rules and approval hierarchies?"
+        },
+        {
+            "id": 13,
+            "title": "Automated Disbursement & Loan Servicing ~ Disbursement Automation Efficiency",
+            "section": "A",
+            "description": "How efficiently does the platform automate loan disbursement account creation and fund transfers across multiple disbursal channels?"
+        },
+        {
+            "id": 14,
+            "title": "Automated Disbursement & Loan Servicing ~ Loan Servicing Comprehensiveness",
+            "section": "A",
+            "description": "How comprehensive are the loan servicing capabilities including repayment management fee handling interest calculations and statement generation?"
+        },
+        {
+            "id": 15,
+            "title": "Collections & Repayment Channel Integration ~ Multi-channel Collection Automation",
+            "section": "A",
+            "description": "How well does the platform automate loan collections across various payment sources?"
+        },
+        {
+            "id": 16,
+            "title": "Collections & Repayment Channel Integration ~ Cross-account Collection Capabilities",
+            "section": "A",
+            "description": "How well does the platform automate loan collections across various payment sources?"
+        },
+        {
+            "id": 17,
+            "title": "Multi-Segment & Multi-Sector Support ~ Segment-specific Workflow Support",
+            "section": "A",
+            "description": "How effectively does the platform support different lending workflows documentation and approval processes across Personal SME and Corporate lending?"
+        },
+        {
+            "id": 18,
+            "title": "Multi-Segment & Multi-Sector Support ~ Regulatory Compliance Adaptation",
+            "section": "A",
+            "description": "Can it accommodate specific regulatory and compliance requirements across different regions?"
+        },
+        {
+            "id": 19,
+            "title": "Workflow & Process Automation ~ Lending Workflow & SLA Management",
+            "section": "A",
+            "description": "How configurable are the platform's workflows for automating lending processes while adapting to different business requirements? Does the platform provide SLA monitoring and enforcement at various stages of the loan lifecycle?"
+        },
+        {
+            "id": 20,
+            "title": "Unified Lending Experience (Omnichannel Support) ~ Multi-Channel Loan Application",
+            "section": "B",
+            "description": "How consistently does the platform provide a seamless loan application and servicing experience across web mobile and branch channels? Can customers switch between channels without re-entering information?"
+        },
+        {
+            "id": 21,
+            "title": "Unified Lending Experience (Omnichannel Support) ~ Loan Status Transparency",
+            "section": "B",
+            "description": "How effectively does the platform provide real-time loan status updates pending requirements disbursement details and repayment information across all customer touchpoints?"
+        },
+        {
+            "id": 22,
+            "title": "Lending Interface & Usability ~ Loan Application Simplicity",
+            "section": "B",
+            "description": "How intuitive and user-friendly is the loan application interface across different devices and borrower segments?"
+        },
+        {
+            "id": 23,
+            "title": "Lending Interface & Usability ~ Borrower Dashboard & Financial Visualization",
+            "section": "B",
+            "description": "How well does the borrower dashboard present loan details repayment schedules and alerts in a clear and visually effective manner?"
+        },
+        {
+            "id": 24,
+            "title": "Loan Journey Management ~ Application-to-Disbursement Flow",
+            "section": "B",
+            "description": "How effectively does the platform guide borrowers from application to disbursement including decision-in-principle estimated completion times and interactive tools?"
+        },
+        {
+            "id": 25,
+            "title": "Loan Journey Management ~ Post-Disbursement Experience",
+            "section": "B",
+            "description": "How seamlessly does the system transition borrowers to loan management clearly presenting repayment options account access and support channels after funds are disbursed?"
+        },
+        {
+            "id": 26,
+            "title": "Lending Personalization ~ Tailored Loan Offerings & Repayment Options",
+            "section": "B",
+            "description": "How well does the platform personalize loan offerings terms and repayment plans based on borrower profiles financial history and eligibility?"
+        },
+        {
+            "id": 27,
+            "title": "Accessibility & Self-Service ~ Multi-Language & Accessibility Support",
+            "section": "B",
+            "description": "How effectively does the platform support accessibility and multi-language loan documentation?"
+        },
+        {
+            "id": 28,
+            "title": "Accessibility & Self-Service ~ Borrower Self-Service Capabilities",
+            "section": "B",
+            "description": "How comprehensive are the platform's self-service features allowing borrowers to manage payments request modifications and access documents without staff intervention?"
+        },
+        {
+            "id": 29,
+            "title": "Regulatory Compliance & Fraud Prevention ~ Compliance Management & Reporting",
+            "section": "C",
+            "description": "How effectively does the platform handle multi-jurisdiction compliance regulatory reporting and real-time compliance monitoring?"
+        },
+        {
+            "id": 30,
+            "title": "Regulatory Compliance & Fraud Prevention ~ Fraud Detection & Risk Controls",
+            "section": "C",
+            "description": "How robust are the platform's fraud detection capabilities including application fraud prevention transaction monitoring and identity verification?"
+        },
+        {
+            "id": 31,
+            "title": "Risk Monitoring & Credit Loss Management ~ Portfolio Risk & Early Warning Indicators",
+            "section": "C",
+            "description": "How effectively does the platform manage portfolio risk enforce credit limits and provide early warning indicators for potential credit deterioration?"
+        },
+        {
+            "id": 32,
+            "title": "Risk Monitoring & Credit Loss Management ~ Credit Loss Provisioning & Reconciliation",
+            "section": "C",
+            "description": "How well does the system support credit loss provisioning expected credit loss modeling (IFRS 9/CECL) and provision reconciliation?"
+        },
+        {
+            "id": 33,
+            "title": "AI & Predictive Analytics ~ AI-Driven Risk Assessment & Decision Optimization",
+            "section": "C",
+            "description": "How effectively does the platform leverage AI/ML for risk assessment customer behavior analysis and decision optimization?"
+        },
+        {
+            "id": 34,
+            "title": "Workflow & Process Automation ~ Lending Workflow & SLA Management",
+            "section": "D",
+            "description": "How comprehensive and flexible is the platform's API ecosystem for integrating with loan origination credit decisioning core banking payment gateways and third-party fintech solutions?"
+        },
+        {
+            "id": 35,
+            "title": "Scalability Security & Multi-Entity Support ~ Performance Data Security & Multi-Entity Lending",
+            "section": "D",
+            "description": "How well does the platform scale to handle high-volume lending demands support multi-entity operations and enforce strong security measures?"
+        },
+        {
+            "id": 36,
+            "title": "Invoice Discounting & Factoring Capabilities ~ Invoice Discounting & Factoring Capabilities",
+            "section": "E",
+            "description": "Does the platform support invoice discounting and factoring? How does it assess process and finance invoices within the system?"
+        },
+        {
+            "id": 37,
+            "title": "Lending Workload Scalability & Business Continuity ~ High-Volume Processing & Disaster Recovery",
+            "section": "E",
+            "description": "How well does the platform handle workload scalability including month-end calculations batch processing and high-volume promotional campaigns?"
+        },
+        {
+            "id": 38,
+            "title": "Lending Innovation & Market Adaptability ~ Embedded Finance & BNPL Support",
+            "section": "E",
+            "description": "How well does the platform support emerging lending models such as Buy Now Pay Later (BNPL) and embedded finance partnerships?"
+        },
+        {
+            "id": 39,
+            "title": "Collection & Recovery System Integration ~ Automated Delinquency & Loan Recovery Management",
+            "section": "E",
+            "description": "How effectively does the platform integrate with collection management systems legal case management tools and recovery tracking solutions?"
+        },
+        {
+            "id": 40,
+            "title": "Collection & Recovery System Integration ~ Delinquency Detection and Strategy Assignment",
+            "section": "E",
+            "description": "How does the system support loan restructuring forbearance and modification workflows across integrated systems?"
+        }
+    ],
+    "question_scores": {
+        "1": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 4.0,
+            "Fusion LoanIQ (Finastra)": 2.0,
+            "Mambu": 3.0,
+            "Newgen LMS": 5.0
+        },
+        "2": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 4.0,
+            "Newgen LMS": 4.0
+        },
+        "3": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "4": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 4.0
+        },
+        "5": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 4.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 4.0
+        },
+        "6": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 4.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "7": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 2.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "8": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "9": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "10": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 4.0
+        },
+        "11": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 4.0
+        },
+        "12": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 4.0
+        },
+        "13": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 4.0,
+            "Newgen LMS": 3.0
+        },
+        "14": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 2.0,
+            "Mambu": 4.0,
+            "Newgen LMS": 5.0
+        },
+        "15": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 2.0,
+            "Newgen LMS": 5.0
+        },
+        "16": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 3.0,
+            "Newgen LMS": 4.0
+        },
+        "17": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 1.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 3.0,
+            "Newgen LMS": 4.0
+        },
+        "18": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 1.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 4.0,
+            "Newgen LMS": 4.0
+        },
+        "19": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 1.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "20": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 1.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "21": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 2.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "22": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 1.0,
+            "Fusion LoanIQ (Finastra)": 2.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "23": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "24": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 4.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 3.0,
+            "Newgen LMS": 4.0
+        },
+        "25": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 4.0,
+            "Mambu": 4.0,
+            "Newgen LMS": 4.0
+        },
+        "26": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "27": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 3.0,
+            "Mambu": 4.0,
+            "Newgen LMS": 5.0
+        },
+        "28": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 2.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "29": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 4.0
+        },
+        "30": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 1.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 3.0,
+            "Newgen LMS": 5.0
+        },
+        "31": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "32": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 1.0,
+            "Fusion LoanIQ (Finastra)": 2.0,
+            "Mambu": 4.0,
+            "Newgen LMS": 3.0
+        },
+        "33": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 3.0,
+            "Fusion LoanIQ (Finastra)": 4.0,
+            "Mambu": 3.0,
+            "Newgen LMS": 3.0
+        },
+        "34": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 1.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "35": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 2.0,
+            "Mambu": 5.0,
+            "Newgen LMS": 4.0
+        },
+        "36": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 2.0,
+            "Mambu": 1.0,
+            "Newgen LMS": 4.0
+        },
+        "37": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 2.0,
+            "Fusion LoanIQ (Finastra)": 0,
+            "Mambu": 4.0,
+            "Newgen LMS": 3.0
+        },
+        "38": {
+            "AxeFinance": 4.0,
+            "Azentio ONELending (Kastle)": 0,
+            "Fusion LoanIQ (Finastra)": 0,
+            "Mambu": 5.0,
+            "Newgen LMS": 4.0
+        },
+        "39": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 0,
+            "Fusion LoanIQ (Finastra)": 0,
+            "Mambu": 5.0,
+            "Newgen LMS": 5.0
+        },
+        "40": {
+            "AxeFinance": 5.0,
+            "Azentio ONELending (Kastle)": 0,
+            "Fusion LoanIQ (Finastra)": 0,
+            "Mambu": 0,
+            "Newgen LMS": 5.0
+        }
+    },
+    "participant_scores": {
+        "Maurice King\u2019ori": {
+            "AxeFinance": 4.97,
+            "Azentio ONELending (Kastle)": 2.38,
+            "Fusion LoanIQ (Finastra)": 1.47,
+            "Mambu": 4.31,
+            "Newgen LMS": 4.42
+        }
+    },
+    "standalone_questions": {
+        "Language": [
+            "English (United States)\u200e"
+        ]
+    },
+    "sections": {
+        "A": {
+            "title": "Core Functional Capabilities",
+            "questions": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "defaultWeight": 35
+        },
+        "B": {
+            "title": "User Interface & User Experience (Simplicity)",
+            "questions": [
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28
+            ],
+            "defaultWeight": 25
+        },
+        "C": {
+            "title": "Risk Management & Advanced Capabilities",
+            "questions": [
+                29,
+                30,
+                31,
+                32,
+                33
+            ],
+            "defaultWeight": 20
+        },
+        "D": {
+            "title": "Technical Architecture & Integration",
+            "questions": [
+                34,
+                35
+            ],
+            "defaultWeight": 20
+        },
+        "E": {
+            "title": "Additional Capability (No Weight)",
+            "questions": [
+                36,
+                37,
+                38,
+                39,
+                40
+            ],
+            "defaultWeight": 0
+        }
+    },
+    "participant_types": {
+        "Maurice King\u2019ori": "Unknown"
+    },
+    "core_participants": [],
+    "noncore_participants": [],
+    "core_vs_noncore_analysis": {
+        "overall_scores": {
+            "Core": {
+                "AxeFinance": 0,
+                "Azentio ONELending (Kastle)": 0,
+                "Fusion LoanIQ (Finastra)": 0,
+                "Mambu": 0,
+                "Newgen LMS": 0
+            },
+            "Non-core": {
+                "AxeFinance": 0,
+                "Azentio ONELending (Kastle)": 0,
+                "Fusion LoanIQ (Finastra)": 0,
+                "Mambu": 0,
+                "Newgen LMS": 0
+            }
+        },
+        "question_scores": {
+            "1": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "2": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "3": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "4": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "5": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "6": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "7": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "8": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "9": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "10": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "11": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "12": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "13": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "14": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "15": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "16": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "17": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "18": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "19": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "20": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "21": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "22": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "23": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "24": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "25": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "26": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "27": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "28": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "29": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "30": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "31": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "32": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "33": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "34": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "35": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "36": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "37": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "38": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "39": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            },
+            "40": {
+                "Core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                },
+                "Non-core": {
+                    "AxeFinance": 0,
+                    "Azentio ONELending (Kastle)": 0,
+                    "Fusion LoanIQ (Finastra)": 0,
+                    "Mambu": 0,
+                    "Newgen LMS": 0
+                }
+            }
+        },
+        "preference_distribution": {
+            "Core": {
+                "AxeFinance": 0,
+                "Azentio ONELending (Kastle)": 0,
+                "Fusion LoanIQ (Finastra)": 0,
+                "Mambu": 0,
+                "Newgen LMS": 0
+            },
+            "Non-core": {
+                "AxeFinance": 0,
+                "Azentio ONELending (Kastle)": 0,
+                "Fusion LoanIQ (Finastra)": 0,
+                "Mambu": 0,
+                "Newgen LMS": 0
+            }
+        },
+        "top_vendor": {
+            "Core": "AxeFinance",
+            "Non-core": "AxeFinance"
+        },
+        "agreement_level": 1.0
+    },
+    "participant_question_scores": {
+        "Maurice King\u2019ori": {
+            "1": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 4,
+                "Fusion LoanIQ (Finastra)": 2,
+                "Mambu": 3,
+                "Newgen LMS": 5
+            },
+            "2": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 4,
+                "Newgen LMS": 4
+            },
+            "3": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "4": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 4
+            },
+            "5": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 4,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 4
+            },
+            "6": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 4,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "7": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 2,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "8": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "9": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "10": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 4
+            },
+            "11": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 4
+            },
+            "12": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 4
+            },
+            "13": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 4,
+                "Newgen LMS": 3
+            },
+            "14": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 2,
+                "Mambu": 4,
+                "Newgen LMS": 5
+            },
+            "15": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 2,
+                "Newgen LMS": 5
+            },
+            "16": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 3,
+                "Newgen LMS": 4
+            },
+            "17": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 1,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 3,
+                "Newgen LMS": 4
+            },
+            "18": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 1,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 4,
+                "Newgen LMS": 4
+            },
+            "19": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 1,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "20": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 1,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "21": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 2,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "22": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 1,
+                "Fusion LoanIQ (Finastra)": 2,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "23": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "24": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 4,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 3,
+                "Newgen LMS": 4
+            },
+            "25": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 4,
+                "Mambu": 4,
+                "Newgen LMS": 4
+            },
+            "26": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "27": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 3,
+                "Mambu": 4,
+                "Newgen LMS": 5
+            },
+            "28": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 2,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "29": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 4
+            },
+            "30": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 1,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 3,
+                "Newgen LMS": 5
+            },
+            "31": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "32": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 1,
+                "Fusion LoanIQ (Finastra)": 2,
+                "Mambu": 4,
+                "Newgen LMS": 3
+            },
+            "33": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 3,
+                "Fusion LoanIQ (Finastra)": 4,
+                "Mambu": 3,
+                "Newgen LMS": 3
+            },
+            "34": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 1,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "35": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 2,
+                "Mambu": 5,
+                "Newgen LMS": 4
+            },
+            "36": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 2,
+                "Mambu": 1,
+                "Newgen LMS": 4
+            },
+            "37": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 2,
+                "Fusion LoanIQ (Finastra)": 0,
+                "Mambu": 4,
+                "Newgen LMS": 3
+            },
+            "38": {
+                "AxeFinance": 4,
+                "Azentio ONELending (Kastle)": 0,
+                "Fusion LoanIQ (Finastra)": 0,
+                "Mambu": 5,
+                "Newgen LMS": 4
+            },
+            "39": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 0,
+                "Fusion LoanIQ (Finastra)": 0,
+                "Mambu": 5,
+                "Newgen LMS": 5
+            },
+            "40": {
+                "AxeFinance": 5,
+                "Azentio ONELending (Kastle)": 0,
+                "Fusion LoanIQ (Finastra)": 0,
+                "Mambu": 0,
+                "Newgen LMS": 5
+            }
+        }
+    },
+    "participant_section_scores": {
+        "Maurice King\u2019ori": {
+            "A": {
+                "AxeFinance": 5.0,
+                "Azentio ONELending (Kastle)": 2.53,
+                "Fusion LoanIQ (Finastra)": 1.16,
+                "Mambu": 4.32,
+                "Newgen LMS": 4.42
+            },
+            "B": {
+                "AxeFinance": 5.0,
+                "Azentio ONELending (Kastle)": 2.44,
+                "Fusion LoanIQ (Finastra)": 1.89,
+                "Mambu": 4.56,
+                "Newgen LMS": 4.78
+            },
+            "C": {
+                "AxeFinance": 5.0,
+                "Azentio ONELending (Kastle)": 2.0,
+                "Fusion LoanIQ (Finastra)": 1.8,
+                "Mambu": 4.0,
+                "Newgen LMS": 4.0
+            },
+            "D": {
+                "AxeFinance": 5.0,
+                "Azentio ONELending (Kastle)": 2.0,
+                "Fusion LoanIQ (Finastra)": 1.5,
+                "Mambu": 5.0,
+                "Newgen LMS": 4.5
+            },
+            "E": {
+                "AxeFinance": 4.8,
+                "Azentio ONELending (Kastle)": 2.0,
+                "Fusion LoanIQ (Finastra)": 2.0,
+                "Mambu": 3.75,
+                "Newgen LMS": 4.2
+            }
+        }
+    }
+}

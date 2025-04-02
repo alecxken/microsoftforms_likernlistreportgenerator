@@ -326,5 +326,295 @@
             ],
             "defaultWeight": 33
         }
+    },
+    "participant_types": {
+        "Cyril Amega": "Unknown",
+        "Michael AMOAH": "Unknown",
+        "Jean-Pierre AKA": "Unknown",
+        "Hamna ATCHULO": "Unknown",
+        "Tayesa BANDA": "Unknown",
+        "Kofi WIAFE\u2013ANNOR": "Unknown",
+        "CRENTSIL CRENTSIL EKOW": "Unknown"
+    },
+    "core_participants": [],
+    "noncore_participants": [],
+    "core_vs_noncore_analysis": {
+        "overall_scores": {
+            "Core": {
+                "Intellect": 0,
+                "Nucleus": 0
+            },
+            "Non-core": {
+                "Intellect": 0,
+                "Nucleus": 0
+            }
+        },
+        "question_scores": {
+            "1": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "2": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "3": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "4": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "5": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "6": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "7": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "8": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "9": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "10": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "11": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "12": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "13": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "14": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "15": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "16": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "17": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "18": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "19": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "20": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "21": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "22": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "23": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "24": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            },
+            "25": {
+                "Core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                },
+                "Non-core": {
+                    "Intellect": 0,
+                    "Nucleus": 0
+                }
+            }
+        },
+        "preference_distribution": {
+            "Core": {
+                "Intellect": 0,
+                "Nucleus": 0
+            },
+            "Non-core": {
+                "Intellect": 0,
+                "Nucleus": 0
+            }
+        },
+        "top_vendor": {
+            "Core": "Intellect",
+            "Non-core": "Intellect"
+        },
+        "agreement_level": 1.0
     }
 }

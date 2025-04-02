@@ -1,0 +1,1292 @@
+{
+    "vendors": [
+        "Board Effect",
+        "Convene",
+        "Diligent",
+        "Dilitrust",
+        "OnBoard"
+    ],
+    "participants": [
+        "Isaac FALA",
+        "Ambrose AGBEKO",
+        "Emmanuel AINA",
+        "William KOTEY",
+        "Jennifer GRANT-EZERONYE",
+        "Adetola OSHOMAH",
+        "Emmanuel NKPA"
+    ],
+    "questions": [
+        {
+            "id": 1,
+            "title": "How comprehensively does the platform support offline functionality while maintaining security and data integrity?",
+            "section": "A",
+            "description": "This section assesses how well the platform addresses the specific needs of board members and legal teams"
+        },
+        {
+            "id": 2,
+            "title": "How effectively does the solution implement granular document access control?",
+            "section": "A",
+            "description": "This section assesses how well the platform addresses the specific needs of board members and legal teams"
+        },
+        {
+            "id": 3,
+            "title": "How well does the solution's visual design  layout and interface elements support clarity and usability?",
+            "section": "B",
+            "description": "This section evaluates the platform's design"
+        },
+        {
+            "id": 4,
+            "title": "How well does the solution implement customization and user interaction tools?",
+            "section": "B",
+            "description": "This section evaluates the platform's design"
+        },
+        {
+            "id": 5,
+            "title": "How intuitively can users complete tasks and navigate workflows in everyday board management scenarios?",
+            "section": "B",
+            "description": "This section evaluates the platform's design"
+        },
+        {
+            "id": 6,
+            "title": "How comprehensive and intelligent are the platform's reporting  and AI-powered insights?",
+            "section": "B",
+            "description": "This section evaluates the platform's design"
+        },
+        {
+            "id": 7,
+            "title": "How effectively does the platform handle the creation  and management of board pack documents?",
+            "section": "B",
+            "description": "This section evaluates the platform's design"
+        },
+        {
+            "id": 8,
+            "title": "How well does the platform handle meeting automation and voting processes?",
+            "section": "C",
+            "description": "This section focuses on the core capabilities of the solution"
+        },
+        {
+            "id": 9,
+            "title": "How effectively does the solution facilitate real-time collaboration and communication among board members?",
+            "section": "C",
+            "description": "This section focuses on the core capabilities of the solution"
+        },
+        {
+            "id": 10,
+            "title": "How user-friendly and secure is the platform's access system  from signup through daily login?",
+            "section": "C",
+            "description": "This section focuses on the core capabilities of the solution"
+        },
+        {
+            "id": 11,
+            "title": "How comprehensive and responsive is the platform's support system for user issues?",
+            "section": "C",
+            "description": "This section focuses on the core capabilities of the solution"
+        },
+        {
+            "id": 12,
+            "title": "How well does the solution deliver a seamless cross-platform experience while providing robust integration options and comprehensive support?",
+            "section": "C",
+            "description": "This section focuses on the core capabilities of the solution"
+        }
+    ],
+    "question_scores": {
+        "1": {
+            "Board Effect": 2.71,
+            "Convene": 3.86,
+            "Diligent": 3.57,
+            "Dilitrust": 3.14,
+            "OnBoard": 3.57
+        },
+        "2": {
+            "Board Effect": 3.57,
+            "Convene": 4.0,
+            "Diligent": 4.0,
+            "Dilitrust": 3.57,
+            "OnBoard": 3.71
+        },
+        "3": {
+            "Board Effect": 3.14,
+            "Convene": 3.71,
+            "Diligent": 3.86,
+            "Dilitrust": 3.43,
+            "OnBoard": 4.14
+        },
+        "4": {
+            "Board Effect": 3.0,
+            "Convene": 3.43,
+            "Diligent": 4.29,
+            "Dilitrust": 3.57,
+            "OnBoard": 4.0
+        },
+        "5": {
+            "Board Effect": 3.29,
+            "Convene": 3.57,
+            "Diligent": 3.86,
+            "Dilitrust": 3.29,
+            "OnBoard": 4.29
+        },
+        "6": {
+            "Board Effect": 2.86,
+            "Convene": 3.43,
+            "Diligent": 4.0,
+            "Dilitrust": 3.71,
+            "OnBoard": 4.14
+        },
+        "7": {
+            "Board Effect": 3.71,
+            "Convene": 3.86,
+            "Diligent": 4.43,
+            "Dilitrust": 3.57,
+            "OnBoard": 4.14
+        },
+        "8": {
+            "Board Effect": 3.0,
+            "Convene": 3.57,
+            "Diligent": 4.0,
+            "Dilitrust": 3.29,
+            "OnBoard": 4.43
+        },
+        "9": {
+            "Board Effect": 3.29,
+            "Convene": 3.86,
+            "Diligent": 4.14,
+            "Dilitrust": 3.43,
+            "OnBoard": 4.29
+        },
+        "10": {
+            "Board Effect": 3.43,
+            "Convene": 3.86,
+            "Diligent": 4.14,
+            "Dilitrust": 4.0,
+            "OnBoard": 4.14
+        },
+        "11": {
+            "Board Effect": 3.43,
+            "Convene": 3.86,
+            "Diligent": 3.71,
+            "Dilitrust": 3.43,
+            "OnBoard": 3.86
+        },
+        "12": {
+            "Board Effect": 3.29,
+            "Convene": 3.86,
+            "Diligent": 4.14,
+            "Dilitrust": 3.43,
+            "OnBoard": 4.14
+        }
+    },
+    "participant_scores": {
+        "Isaac FALA": {
+            "Board Effect": 3.17,
+            "Convene": 4.67,
+            "Diligent": 4.42,
+            "Dilitrust": 3.42,
+            "OnBoard": 4.75
+        },
+        "Ambrose AGBEKO": {
+            "Board Effect": 3.58,
+            "Convene": 3.5,
+            "Diligent": 4.67,
+            "Dilitrust": 3.58,
+            "OnBoard": 4.08
+        },
+        "Emmanuel AINA": {
+            "Board Effect": 3.25,
+            "Convene": 4.17,
+            "Diligent": 4.67,
+            "Dilitrust": 3.17,
+            "OnBoard": 4.42
+        },
+        "William KOTEY": {
+            "Board Effect": 3.42,
+            "Convene": 3.5,
+            "Diligent": 3.5,
+            "Dilitrust": 3.42,
+            "OnBoard": 4.0
+        },
+        "Jennifer GRANT-EZERONYE": {
+            "Board Effect": 2.83,
+            "Convene": 3.17,
+            "Diligent": 4.5,
+            "Dilitrust": 3.0,
+            "OnBoard": 4.58
+        },
+        "Adetola OSHOMAH": {
+            "Board Effect": 3.33,
+            "Convene": 3.17,
+            "Diligent": 3.17,
+            "Dilitrust": 3.5,
+            "OnBoard": 3.33
+        },
+        "Emmanuel NKPA": {
+            "Board Effect": 3.0,
+            "Convene": 4.0,
+            "Diligent": 3.17,
+            "Dilitrust": 4.33,
+            "OnBoard": 3.33
+        }
+    },
+    "standalone_questions": {
+        "For You What Three Solutions Stood out the most": [
+            "Convene;Diligent;Onboard;",
+            "Diligent;Onboard;Convene;",
+            "Diligent;Onboard;Convene;",
+            "Convene;Onboard;Board Effect;",
+            "Diligent;Onboard;",
+            "Dilitrust;Board Effect;Onboard;",
+            "Dilitrust;Convene;Onboard;"
+        ],
+        "What choice did you use to aid in decisioning of the board management solutions?": [
+            "Online material/review;Other;",
+            "Online material/review;Other;",
+            "Online material/review;",
+            "Online material/review;Demo;Other;",
+            "Online material/review;",
+            "Online material/review;Demo;",
+            "Demo;Free subscription;Online material/review;"
+        ]
+    },
+    "sections": {
+        "A": {
+            "title": "Evaluation Based User Needs",
+            "questions": [
+                1,
+                2
+            ],
+            "defaultWeight": 33
+        },
+        "B": {
+            "title": "User Interface & User Experience (Simplicity)",
+            "questions": [
+                3,
+                4,
+                5,
+                6,
+                7
+            ],
+            "defaultWeight": 33
+        },
+        "C": {
+            "title": "Features & Functionality",
+            "questions": [
+                8,
+                9,
+                10,
+                11,
+                12
+            ],
+            "defaultWeight": 34
+        }
+    },
+    "participant_types": {
+        "Isaac FALA": "Unknown",
+        "Ambrose AGBEKO": "Unknown",
+        "Emmanuel AINA": "Unknown",
+        "William KOTEY": "Unknown",
+        "Jennifer GRANT-EZERONYE": "Unknown",
+        "Adetola OSHOMAH": "Unknown",
+        "Emmanuel NKPA": "Unknown"
+    },
+    "core_participants": [],
+    "noncore_participants": [],
+    "core_vs_noncore_analysis": {
+        "overall_scores": {
+            "Core": {
+                "Board Effect": 0,
+                "Convene": 0,
+                "Diligent": 0,
+                "Dilitrust": 0,
+                "OnBoard": 0
+            },
+            "Non-core": {
+                "Board Effect": 0,
+                "Convene": 0,
+                "Diligent": 0,
+                "Dilitrust": 0,
+                "OnBoard": 0
+            }
+        },
+        "question_scores": {
+            "1": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            },
+            "2": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            },
+            "3": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            },
+            "4": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            },
+            "5": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            },
+            "6": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            },
+            "7": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            },
+            "8": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            },
+            "9": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            },
+            "10": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            },
+            "11": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            },
+            "12": {
+                "Core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                },
+                "Non-core": {
+                    "Board Effect": 0,
+                    "Convene": 0,
+                    "Diligent": 0,
+                    "Dilitrust": 0,
+                    "OnBoard": 0
+                }
+            }
+        },
+        "preference_distribution": {
+            "Core": {
+                "Board Effect": 0,
+                "Convene": 0,
+                "Diligent": 0,
+                "Dilitrust": 0,
+                "OnBoard": 0
+            },
+            "Non-core": {
+                "Board Effect": 0,
+                "Convene": 0,
+                "Diligent": 0,
+                "Dilitrust": 0,
+                "OnBoard": 0
+            }
+        },
+        "top_vendor": {
+            "Core": "Board Effect",
+            "Non-core": "Board Effect"
+        },
+        "agreement_level": 1.0
+    },
+    "participant_question_scores": {
+        "Isaac FALA": {
+            "1": {
+                "Board Effect": 2,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "2": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "3": {
+                "Board Effect": 3,
+                "Convene": 5,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 5
+            },
+            "4": {
+                "Board Effect": 3,
+                "Convene": 5,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 5
+            },
+            "5": {
+                "Board Effect": 3,
+                "Convene": 5,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "6": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "7": {
+                "Board Effect": 4,
+                "Convene": 5,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "8": {
+                "Board Effect": 3,
+                "Convene": 5,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "9": {
+                "Board Effect": 3,
+                "Convene": 5,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "10": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 4,
+                "OnBoard": 5
+            },
+            "11": {
+                "Board Effect": 3,
+                "Convene": 5,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "12": {
+                "Board Effect": 3,
+                "Convene": 5,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            }
+        },
+        "Ambrose AGBEKO": {
+            "1": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "2": {
+                "Board Effect": 4,
+                "Convene": 3,
+                "Diligent": 5,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "3": {
+                "Board Effect": 4,
+                "Convene": 3,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "4": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "5": {
+                "Board Effect": 4,
+                "Convene": 3,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "6": {
+                "Board Effect": 4,
+                "Convene": 3,
+                "Diligent": 5,
+                "Dilitrust": 5,
+                "OnBoard": 4
+            },
+            "7": {
+                "Board Effect": 4,
+                "Convene": 3,
+                "Diligent": 5,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "8": {
+                "Board Effect": 4,
+                "Convene": 3,
+                "Diligent": 5,
+                "Dilitrust": 4,
+                "OnBoard": 5
+            },
+            "9": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "10": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 5,
+                "OnBoard": 4
+            },
+            "11": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 3,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "12": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 2,
+                "OnBoard": 3
+            }
+        },
+        "Emmanuel AINA": {
+            "1": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "2": {
+                "Board Effect": 3,
+                "Convene": 5,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "3": {
+                "Board Effect": 3,
+                "Convene": 5,
+                "Diligent": 4,
+                "Dilitrust": 2,
+                "OnBoard": 5
+            },
+            "4": {
+                "Board Effect": 4,
+                "Convene": 5,
+                "Diligent": 5,
+                "Dilitrust": 4,
+                "OnBoard": 5
+            },
+            "5": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "6": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "7": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "8": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "9": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "10": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "11": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "12": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 4,
+                "OnBoard": 5
+            }
+        },
+        "William KOTEY": {
+            "1": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 3,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "2": {
+                "Board Effect": 4,
+                "Convene": 5,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "3": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 3
+            },
+            "4": {
+                "Board Effect": 3,
+                "Convene": 2,
+                "Diligent": 4,
+                "Dilitrust": 2,
+                "OnBoard": 3
+            },
+            "5": {
+                "Board Effect": 4,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "6": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "7": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "8": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "9": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 5
+            },
+            "10": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 3,
+                "Dilitrust": 5,
+                "OnBoard": 4
+            },
+            "11": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 3,
+                "OnBoard": 3
+            },
+            "12": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 5
+            }
+        },
+        "Jennifer GRANT-EZERONYE": {
+            "1": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 2,
+                "OnBoard": 4
+            },
+            "2": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 2,
+                "OnBoard": 3
+            },
+            "3": {
+                "Board Effect": 2,
+                "Convene": 3,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "4": {
+                "Board Effect": 2,
+                "Convene": 2,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "5": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 5,
+                "Dilitrust": 4,
+                "OnBoard": 5
+            },
+            "6": {
+                "Board Effect": 2,
+                "Convene": 3,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "7": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "8": {
+                "Board Effect": 2,
+                "Convene": 3,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "9": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 5,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            },
+            "10": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 5,
+                "Dilitrust": 4,
+                "OnBoard": 5
+            },
+            "11": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "12": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 4,
+                "Dilitrust": 3,
+                "OnBoard": 5
+            }
+        },
+        "Adetola OSHOMAH": {
+            "1": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 3,
+                "OnBoard": 3
+            },
+            "2": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 3,
+                "Dilitrust": 4,
+                "OnBoard": 3
+            },
+            "3": {
+                "Board Effect": 4,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 4,
+                "OnBoard": 3
+            },
+            "4": {
+                "Board Effect": 3,
+                "Convene": 2,
+                "Diligent": 3,
+                "Dilitrust": 4,
+                "OnBoard": 3
+            },
+            "5": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 3,
+                "OnBoard": 3
+            },
+            "6": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "7": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "8": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 3,
+                "OnBoard": 3
+            },
+            "9": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "10": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 3,
+                "OnBoard": 3
+            },
+            "11": {
+                "Board Effect": 4,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 3,
+                "OnBoard": 4
+            },
+            "12": {
+                "Board Effect": 3,
+                "Convene": 3,
+                "Diligent": 3,
+                "Dilitrust": 3,
+                "OnBoard": 3
+            }
+        },
+        "Emmanuel NKPA": {
+            "1": {
+                "Board Effect": 2,
+                "Convene": 4,
+                "Diligent": 2,
+                "Dilitrust": 4,
+                "OnBoard": 2
+            },
+            "2": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "3": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 3,
+                "Dilitrust": 5,
+                "OnBoard": 3
+            },
+            "4": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 5,
+                "OnBoard": 3
+            },
+            "5": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "6": {
+                "Board Effect": 2,
+                "Convene": 4,
+                "Diligent": 2,
+                "Dilitrust": 5,
+                "OnBoard": 4
+            },
+            "7": {
+                "Board Effect": 4,
+                "Convene": 4,
+                "Diligent": 4,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "8": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 3,
+                "Dilitrust": 4,
+                "OnBoard": 4
+            },
+            "9": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 3,
+                "Dilitrust": 4,
+                "OnBoard": 3
+            },
+            "10": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 3,
+                "Dilitrust": 4,
+                "OnBoard": 3
+            },
+            "11": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 3,
+                "Dilitrust": 4,
+                "OnBoard": 3
+            },
+            "12": {
+                "Board Effect": 3,
+                "Convene": 4,
+                "Diligent": 3,
+                "Dilitrust": 5,
+                "OnBoard": 3
+            }
+        }
+    },
+    "participant_section_scores": {
+        "Isaac FALA": {
+            "A": {
+                "Board Effect": 3.0,
+                "Convene": 4.0,
+                "Diligent": 4.0,
+                "Dilitrust": 4.0,
+                "OnBoard": 4.0
+            },
+            "B": {
+                "Board Effect": 3.2,
+                "Convene": 4.8,
+                "Diligent": 4.4,
+                "Dilitrust": 3.4,
+                "OnBoard": 4.8
+            },
+            "C": {
+                "Board Effect": 3.2,
+                "Convene": 4.8,
+                "Diligent": 4.6,
+                "Dilitrust": 3.2,
+                "OnBoard": 5.0
+            }
+        },
+        "Ambrose AGBEKO": {
+            "A": {
+                "Board Effect": 3.5,
+                "Convene": 3.5,
+                "Diligent": 5.0,
+                "Dilitrust": 3.5,
+                "OnBoard": 4.0
+            },
+            "B": {
+                "Board Effect": 3.8,
+                "Convene": 3.2,
+                "Diligent": 4.6,
+                "Dilitrust": 3.6,
+                "OnBoard": 4.2
+            },
+            "C": {
+                "Board Effect": 3.4,
+                "Convene": 3.8,
+                "Diligent": 4.6,
+                "Dilitrust": 3.6,
+                "OnBoard": 4.0
+            }
+        },
+        "Emmanuel AINA": {
+            "A": {
+                "Board Effect": 3.0,
+                "Convene": 4.5,
+                "Diligent": 4.5,
+                "Dilitrust": 3.0,
+                "OnBoard": 4.0
+            },
+            "B": {
+                "Board Effect": 3.2,
+                "Convene": 4.4,
+                "Diligent": 4.6,
+                "Dilitrust": 3.0,
+                "OnBoard": 4.4
+            },
+            "C": {
+                "Board Effect": 3.4,
+                "Convene": 3.8,
+                "Diligent": 4.8,
+                "Dilitrust": 3.4,
+                "OnBoard": 4.6
+            }
+        },
+        "William KOTEY": {
+            "A": {
+                "Board Effect": 3.5,
+                "Convene": 4.5,
+                "Diligent": 3.5,
+                "Dilitrust": 3.5,
+                "OnBoard": 4.0
+            },
+            "B": {
+                "Board Effect": 3.4,
+                "Convene": 3.0,
+                "Diligent": 3.6,
+                "Dilitrust": 3.0,
+                "OnBoard": 3.8
+            },
+            "C": {
+                "Board Effect": 3.4,
+                "Convene": 3.6,
+                "Diligent": 3.4,
+                "Dilitrust": 3.8,
+                "OnBoard": 4.2
+            }
+        },
+        "Jennifer GRANT-EZERONYE": {
+            "A": {
+                "Board Effect": 3.0,
+                "Convene": 3.5,
+                "Diligent": 3.5,
+                "Dilitrust": 2.0,
+                "OnBoard": 3.5
+            },
+            "B": {
+                "Board Effect": 2.4,
+                "Convene": 2.8,
+                "Diligent": 4.8,
+                "Dilitrust": 3.2,
+                "OnBoard": 4.8
+            },
+            "C": {
+                "Board Effect": 3.2,
+                "Convene": 3.4,
+                "Diligent": 4.6,
+                "Dilitrust": 3.2,
+                "OnBoard": 4.8
+            }
+        },
+        "Adetola OSHOMAH": {
+            "A": {
+                "Board Effect": 3.0,
+                "Convene": 3.5,
+                "Diligent": 3.0,
+                "Dilitrust": 3.5,
+                "OnBoard": 3.0
+            },
+            "B": {
+                "Board Effect": 3.4,
+                "Convene": 3.0,
+                "Diligent": 3.2,
+                "Dilitrust": 3.8,
+                "OnBoard": 3.4
+            },
+            "C": {
+                "Board Effect": 3.4,
+                "Convene": 3.2,
+                "Diligent": 3.2,
+                "Dilitrust": 3.2,
+                "OnBoard": 3.4
+            }
+        },
+        "Emmanuel NKPA": {
+            "A": {
+                "Board Effect": 3.0,
+                "Convene": 4.0,
+                "Diligent": 3.0,
+                "Dilitrust": 4.0,
+                "OnBoard": 3.0
+            },
+            "B": {
+                "Board Effect": 3.0,
+                "Convene": 4.0,
+                "Diligent": 3.4,
+                "Dilitrust": 4.6,
+                "OnBoard": 3.6
+            },
+            "C": {
+                "Board Effect": 3.0,
+                "Convene": 4.0,
+                "Diligent": 3.0,
+                "Dilitrust": 4.2,
+                "OnBoard": 3.2
+            }
+        }
+    }
+}

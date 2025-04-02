@@ -9,89 +9,94 @@ let standoutSolutions = {};
 let sections = {};
 let sectionWeights = {};
 let sectionScores = {};
-
-
-// Add this code at the beginning of the script, after your global variables
+let participantTypes = {};
+let coreParticipants = [];
+let noncoreParticipants = [];
+let coreVsNoncoreAnalysis = {};
+let participantQuestionScores = {};
+let participantSectionScores = {};
+let selectedParticipant = null;
 
 // Define Ecobank brand colors for charts
 const ecobankColors = {
-    blue: '#0079C1',    // Primary blue
-    green: '#008539',   // Secondary green
+    blue: '#0082BB',    // Primary blue
+    green: '#BED600',   // Secondary green
     white: '#FFFFFF',   // White
     lightGray: '#F5F5F5', // Light gray
     
     // Additional shades for charts
-    darkBlue: '#005a8c',
+    darkBlue: '#005B82',
     lightBlue: '#4ca8d8',
-    darkGreen: '#006227',
+    darkGreen: '#669438',
     lightGreen: '#4caf7c',
     gray: '#666666'
-  };
+};
   
-  // Create Highcharts theme with Ecobank colors
-  const ecobankHighchartsTheme = {
+// Create Highcharts theme with Ecobank colors
+const ecobankHighchartsTheme = {
     colors: [
-      ecobankColors.blue,
-      ecobankColors.green,
-      ecobankColors.darkBlue,
-      ecobankColors.lightGreen,
-      ecobankColors.lightBlue,
-      ecobankColors.darkGreen
+        ecobankColors.blue,
+        ecobankColors.green,
+        ecobankColors.darkBlue,
+        ecobankColors.lightGreen,
+        ecobankColors.lightBlue,
+        ecobankColors.darkGreen
     ],
     
     chart: {
-      backgroundColor: ecobankColors.white,
-      style: {
-        fontFamily: 'Arial, sans-serif'
-      }
+        backgroundColor: ecobankColors.white,
+        style: {
+            fontFamily: 'Arial, sans-serif'
+        }
     },
     
     title: {
-      style: {
-        color: ecobankColors.blue,
-        fontWeight: 'bold'
-      }
+        style: {
+            color: ecobankColors.blue,
+            fontWeight: 'bold'
+        }
     },
     
     subtitle: {
-      style: {
-        color: ecobankColors.gray
-      }
+        style: {
+            color: ecobankColors.gray
+        }
     },
     
     legend: {
-      itemStyle: {
-        color: '#333333'
-      },
-      itemHoverStyle: {
-        color: ecobankColors.blue
-      }
+        itemStyle: {
+            color: '#333333'
+        },
+        itemHoverStyle: {
+            color: ecobankColors.blue
+        }
     },
     
     colorAxis: {
-      min: 1,
-      max: 5,
-      stops: [
-        [0, '#ffdfdf'],    // Light red for low scores
-        [0.5, '#ffffff'],  // White for middle scores
-        [1, ecobankColors.lightGreen]  // Light green for high scores
-      ]
+        min: 1,
+        max: 5,
+        stops: [
+            [0, '#ffdfdf'],    // Light red for low scores
+            [0.5, '#ffffff'],  // White for middle scores
+            [1, ecobankColors.lightGreen]  // Light green for high scores
+        ]
     },
     
     plotOptions: {
-      spline: {
-        color: ecobankColors.blue,
-        marker: {
-          fillColor: ecobankColors.white,
-          lineColor: ecobankColors.blue,
-          lineWidth: 2
+        spline: {
+            color: ecobankColors.blue,
+            marker: {
+                fillColor: ecobankColors.white,
+                lineColor: ecobankColors.blue,
+                lineWidth: 2
+            }
+        },
+        series: {
+            borderColor: ecobankColors.blue
         }
-      },
-      series: {
-        borderColor: ecobankColors.blue
-      }
     }
-  };
+};
+
 // Initialize when document is ready
 document.addEventListener('DOMContentLoaded', function() {
     // Show loading overlay
@@ -149,6 +154,16 @@ function processReportData() {
 
     // Extract sections
     sections = reportData.sections || {};
+    
+    // Extract participant types
+    participantTypes = reportData.participant_types || {};
+    
+    // Extract core and non-core participants
+    coreParticipants = reportData.core_participants || [];
+    noncoreParticipants = reportData.noncore_participants || [];
+    
+    // Extract core vs non-core analysis
+    coreVsNoncoreAnalysis = reportData.core_vs_noncore_analysis || {};
 
     // Process standout solutions from standalone questions
     standoutSolutions = processStandoutSolutions();
@@ -158,6 +173,12 @@ function processReportData() {
 
     // Calculate section scores
     sectionScores = calculateSectionScores();
+     // Extract participant question scores
+    participantQuestionScores = reportData.participant_question_scores || {};
+    
+     // Extract participant section scores
+    participantSectionScores = reportData.participant_section_scores || {};
+
 }
 
 // Process standout solutions from standalone questions
@@ -333,6 +354,9 @@ function updateUI() {
 
     // Update executive summary
     updateExecutiveSummary();
+    
+    // Update Core vs Non-core section
+    updateCoreNoncoreSection();
 
     // Create section sliders
     createSectionSliders();
@@ -347,8 +371,11 @@ function updateUI() {
 // Update executive summary
 function updateExecutiveSummary() {
     // Update summary text
+    const coreCount = coreParticipants.length;
+    const noncoreCount = noncoreParticipants.length;
+    
     document.getElementById('executiveSummaryText').textContent =
-        `This interactive report presents an analysis of the evaluation responses from ${participants.length} participants who assessed ${vendors.length} solutions: ${vendors.join(', ')}. The solutions were evaluated across ${questions.length} criteria organized in ${Object.keys(sections).length} sections.`;
+        `This interactive report presents an analysis of the evaluation responses from ${participants.length} participants (${coreCount} Core and ${noncoreCount} Non-core) who assessed ${vendors.length} solutions: ${vendors.join(', ')}. The solutions were evaluated across ${questions.length} criteria organized in ${Object.keys(sections).length} sections.`;
 
     // Calculate weighted scores for key findings
     const weightedScores = calculateWeightedScores();
@@ -361,6 +388,15 @@ function updateExecutiveSummary() {
     const topStandoutVendor = standoutVendors[0];
     const standoutPercentage = Math.round((standoutSolutions[topStandoutVendor] / participants.length) * 100);
 
+    // Get top choices by participant type
+    let coreTopChoice = '';
+    let noncoreTopChoice = '';
+    
+    if (coreVsNoncoreAnalysis && coreVsNoncoreAnalysis.top_vendor) {
+        coreTopChoice = coreVsNoncoreAnalysis.top_vendor.Core || '';
+        noncoreTopChoice = coreVsNoncoreAnalysis.top_vendor.Non_core || '';
+    }
+
     // Update key findings
     const keyFindingsList = document.getElementById('keyFindingsList');
     keyFindingsList.innerHTML = `
@@ -368,6 +404,14 @@ function updateExecutiveSummary() {
         <li><strong>Section-weighted analysis:</strong> With current section weights, <span class="highlight">${topVendors[0]}</span> emerges as the leader.</li>
         <li><strong>User preference:</strong> <span class="highlight">${topStandoutVendor}</span> was selected as a standout solution by ${standoutSolutions[topStandoutVendor]} of ${participants.length} respondents (${standoutPercentage}%).</li>
     `;
+    
+    if (coreTopChoice && noncoreTopChoice) {
+        const agreementText = coreTopChoice === noncoreTopChoice ? 
+            `Both Core and Non-core users prefer <span class="highlight">${coreTopChoice}</span>.` : 
+            `Core users prefer <span class="highlight">${coreTopChoice}</span> while Non-core users prefer <span class="highlight">${noncoreTopChoice}</span>.`;
+        
+        keyFindingsList.innerHTML += `<li><strong>User type preferences:</strong> ${agreementText}</li>`;
+    }
     
     // Update participants list
     const participantListContainer = document.getElementById('participantListContainer');
@@ -385,7 +429,10 @@ function updateExecutiveSummary() {
     
     participants.slice(0, midpoint).forEach(participant => {
         const li = document.createElement('li');
-        li.innerHTML = `<i class="bi bi-person-circle me-2"></i> ${participant}`;
+        const participantType = participantTypes[participant] || '';
+        const typeBadge = participantType ? 
+            `<span class="participant-type-pill ${participantType.toLowerCase() === 'core' ? 'core' : 'noncore'}">${participantType}</span>` : '';
+        li.innerHTML = `<i class="bi bi-person-circle me-2"></i> ${participant} ${typeBadge}`;
         ul1.appendChild(li);
     });
     
@@ -402,13 +449,434 @@ function updateExecutiveSummary() {
         
         participants.slice(midpoint).forEach(participant => {
             const li = document.createElement('li');
-            li.innerHTML = `<i class="bi bi-person-circle me-2"></i> ${participant}`;
+            const participantType = participantTypes[participant] || '';
+            const typeBadge = participantType ? 
+                `<span class="participant-type-pill ${participantType.toLowerCase() === 'core' ? 'core' : 'noncore'}">${participantType}</span>` : '';
+            li.innerHTML = `<i class="bi bi-person-circle me-2"></i> ${participant} ${typeBadge}`;
             ul2.appendChild(li);
         });
         
         col2.appendChild(ul2);
         participantListContainer.appendChild(col2);
     }
+}
+
+// Update Core vs Non-core section
+function updateCoreNoncoreSection() {
+    // Update participant counts
+    document.getElementById('coreParticipantCount').textContent = coreParticipants.length;
+    document.getElementById('noncoreParticipantCount').textContent = noncoreParticipants.length;
+    
+    // Update agreement level
+    if (coreVsNoncoreAnalysis && coreVsNoncoreAnalysis.agreement_level !== undefined) {
+        const agreementLevel = coreVsNoncoreAnalysis.agreement_level;
+        const agreementPercent = Math.round(agreementLevel * 100);
+        
+        document.getElementById('agreementValue').textContent = `${agreementPercent}%`;
+        document.getElementById('agreementMeterFill').style.width = `${agreementPercent}%`;
+        
+        let agreementDescription = '';
+        if (agreementLevel >= 0.8) {
+            agreementDescription = 'High agreement: Core and Non-core participants have very similar preferences.';
+        } else if (agreementLevel >= 0.5) {
+            agreementDescription = 'Moderate agreement: Core and Non-core participants have somewhat aligned preferences with some differences.';
+        } else {
+            agreementDescription = 'Low agreement: Core and Non-core participants have significantly different preferences.';
+        }
+        
+        document.getElementById('agreementDescription').textContent = agreementDescription;
+    }
+    
+    // Create participant distribution chart
+    createParticipantDistributionChart();
+    
+    // Create Core vs Non-core comparison chart
+    createCoreNoncoreComparisonChart();
+    
+    // Update top choice widgets
+    updateTopChoiceWidgets();
+    
+    // Update key differences section
+    updateKeyDifferences();
+    
+// Create section comparison chart
+createSectionComparisonChart();
+}
+
+// Create participant distribution chart
+function createParticipantDistributionChart() {
+    Highcharts.chart('participantDistributionChart', {
+        chart: {
+            type: 'pie',
+            height: 200
+        },
+        title: {
+            text: null
+        },
+        tooltip: {
+            pointFormat: '<b>{point.y} participants ({point.percentage:.1f}%)</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b><br>{point.y} ({point.percentage:.1f}%)'
+                },
+                showInLegend: false
+            }
+        },
+        series: [{
+            name: 'Participants',
+            colorByPoint: true,
+            data: [{
+                name: 'Core',
+                y: coreParticipants.length,
+                color: ecobankColors.blue
+            }, {
+                name: 'Non-core',
+                y: noncoreParticipants.length,
+                color: ecobankColors.green
+            }]
+        }]
+    });
+}
+
+// Create Core vs Non-core comparison chart
+function createCoreNoncoreComparisonChart() {
+    if (!coreVsNoncoreAnalysis || !coreVsNoncoreAnalysis.overall_scores) {
+        return;
+    }
+    
+    const coreScores = [];
+    const noncoreScores = [];
+    
+    // Sort vendors by average of Core and Non-core scores
+    const vendorOrder = [...vendors].sort((a, b) => {
+        const aAvgScore = (
+            (coreVsNoncoreAnalysis.overall_scores.Core[a] || 0) + 
+            (coreVsNoncoreAnalysis.overall_scores['Non-core'][a] || 0)
+        ) / 2;
+        
+        const bAvgScore = (
+            (coreVsNoncoreAnalysis.overall_scores.Core[b] || 0) + 
+            (coreVsNoncoreAnalysis.overall_scores['Non-core'][b] || 0)
+        ) / 2;
+        
+        return bAvgScore - aAvgScore;
+    });
+    
+    vendorOrder.forEach(vendor => {
+        coreScores.push(coreVsNoncoreAnalysis.overall_scores.Core[vendor] || 0);
+        noncoreScores.push(coreVsNoncoreAnalysis.overall_scores['Non-core'][vendor] || 0);
+    });
+    
+    Highcharts.chart('coreNoncoreComparisonChart', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Core vs Non-core Overall Scores',
+            style: { fontSize: '16px' }
+        },
+        subtitle: {
+            text: 'Comparing evaluation scores between Core and Non-core participants'
+        },
+        xAxis: {
+            categories: vendorOrder,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            max: 5,
+            title: {
+                text: 'Average Score (1-5)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Core',
+            data: coreScores,
+            color: ecobankColors.blue
+        }, {
+            name: 'Non-core',
+            data: noncoreScores,
+            color: ecobankColors.green
+        }]
+    });
+}
+
+// Update top choice widgets
+function updateTopChoiceWidgets() {
+    if (!coreVsNoncoreAnalysis || !coreVsNoncoreAnalysis.top_vendor) {
+        return;
+    }
+    
+    // Update Core top choice
+    const coreTopChoice = coreVsNoncoreAnalysis.top_vendor.Core;
+    const coreScore = coreVsNoncoreAnalysis.overall_scores.Core[coreTopChoice] || 0;
+    
+    if (coreTopChoice) {
+        document.getElementById('coreTopChoiceWidget').innerHTML = `
+            <div class="mb-1" style="font-size: 1.8rem; font-weight: bold;">${coreTopChoice}</div>
+            <div class="text-muted">Score: ${coreScore.toFixed(2)}</div>
+        `;
+    }
+    
+    // Update Non-core top choice
+    const noncoreTopChoice = coreVsNoncoreAnalysis.top_vendor['Non-core'];
+    const noncoreScore = coreVsNoncoreAnalysis.overall_scores['Non-core'][noncoreTopChoice] || 0;
+    
+    if (noncoreTopChoice) {
+        document.getElementById('noncoreTopChoiceWidget').innerHTML = `
+            <div class="mb-1" style="font-size: 1.8rem; font-weight: bold;">${noncoreTopChoice}</div>
+            <div class="text-muted">Score: ${noncoreScore.toFixed(2)}</div>
+        `;
+    }
+}
+
+// Update key differences section
+function updateKeyDifferences() {
+    if (!coreVsNoncoreAnalysis || !coreVsNoncoreAnalysis.question_scores) {
+        return;
+    }
+    
+    const container = document.getElementById('keyDifferencesContainer');
+    container.innerHTML = '';
+    
+    // Find questions with significant differences
+    const questionDifferences = [];
+    
+    for (const qId in coreVsNoncoreAnalysis.question_scores) {
+        const coreScores = coreVsNoncoreAnalysis.question_scores[qId].Core || {};
+        const noncoreScores = coreVsNoncoreAnalysis.question_scores[qId]['Non-core'] || {};
+        
+        vendors.forEach(vendor => {
+            const coreScore = coreScores[vendor] || 0;
+            const noncoreScore = noncoreScores[vendor] || 0;
+            const difference = Math.abs(coreScore - noncoreScore);
+            
+            if (difference >= 1.0) {  // Minimum difference to be considered significant
+                const question = questions.find(q => q.id.toString() === qId);
+                
+                if (question) {
+                    questionDifferences.push({
+                        questionId: qId,
+                        questionTitle: question.title,
+                        vendor: vendor,
+                        coreScore: coreScore,
+                        noncoreScore: noncoreScore,
+                        difference: difference
+                    });
+                }
+            }
+        });
+    }
+    
+    // Sort by difference (largest first)
+    questionDifferences.sort((a, b) => b.difference - a.difference);
+    
+    // Display top differences
+    if (questionDifferences.length > 0) {
+        const maxDifferences = 3; // Number of differences to show
+        const topDifferences = questionDifferences.slice(0, maxDifferences);
+        
+        const differencesHtml = topDifferences.map(diff => {
+            const directionIcon = diff.coreScore > diff.noncoreScore ? 
+                '<i class="bi bi-arrow-up text-success"></i>' : 
+                '<i class="bi bi-arrow-down text-danger"></i>';
+            
+            return `
+                <div class="mb-3">
+                    <div class="fw-bold">Q${diff.questionId}: ${truncateText(diff.questionTitle, 60)}</div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="type-badge core">Core</span> ${diff.coreScore.toFixed(2)}
+                        </div>
+                        <div>
+                            <span class="type-badge noncore">Non-core</span> ${diff.noncoreScore.toFixed(2)}
+                        </div>
+                        <div class="ms-2">
+                            Diff: ${Math.abs(diff.coreScore - diff.noncoreScore).toFixed(2)} ${directionIcon}
+                        </div>
+                    </div>
+                    <div class="text-muted small mt-1">Solution: ${diff.vendor}</div>
+                </div>
+            `;
+        }).join('');
+        
+        container.innerHTML = differencesHtml;
+    } else {
+        container.innerHTML = '<p class="text-center">No significant differences found between Core and Non-core evaluations.</p>';
+    }
+}
+
+// Helper function to truncate text
+function truncateText(text, maxLength) {
+    if (!text) return '';
+    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+}
+
+// Create section comparison chart
+function createSectionComparisonChart() {
+    if (!coreVsNoncoreAnalysis) {
+        return;
+    }
+    
+    // Create section selector
+    const sectionSelect = document.getElementById('sectionComparisonSelect');
+    sectionSelect.innerHTML = '';
+    
+    // Add All option
+    const allOption = document.createElement('option');
+    allOption.value = 'all';
+    allOption.textContent = 'All Sections (Overall)';
+    sectionSelect.appendChild(allOption);
+    
+    // Add section options
+    Object.keys(sections).forEach(sectionKey => {
+        const option = document.createElement('option');
+        option.value = sectionKey;
+        option.textContent = `Section ${sectionKey}: ${sections[sectionKey].title}`;
+        sectionSelect.appendChild(option);
+    });
+    
+    // Add event listener
+    sectionSelect.addEventListener('change', function() {
+        updateSectionComparisonChart(this.value);
+    });
+    
+    // Initialize with All section
+    updateSectionComparisonChart('all');
+}
+
+// Update section comparison chart based on selected section
+function updateSectionComparisonChart(sectionKey) {
+    if (!coreVsNoncoreAnalysis) {
+        return;
+    }
+    
+    let chartTitle = '';
+    let coreScores = [];
+    let noncoreScores = [];
+    
+    if (sectionKey === 'all') {
+        // Overall scores
+        chartTitle = 'Overall Scores by User Type';
+        
+        vendors.forEach(vendor => {
+            coreScores.push(coreVsNoncoreAnalysis.overall_scores.Core[vendor] || 0);
+            noncoreScores.push(coreVsNoncoreAnalysis.overall_scores['Non-core'][vendor] || 0);
+        });
+    } else {
+        // Section-specific scores
+        const sectionTitle = sections[sectionKey] ? sections[sectionKey].title : `Section ${sectionKey}`;
+        chartTitle = `${sectionTitle} Scores by User Type`;
+        
+        // Calculate section scores for Core and Non-core
+        const sectionQuestions = sections[sectionKey] ? sections[sectionKey].questions || [] : [];
+        
+        vendors.forEach(vendor => {
+            // Core scores for this section
+            let coreTotalScore = 0;
+            let coreCount = 0;
+            
+            // Non-core scores for this section
+            let noncoreTotalScore = 0;
+            let noncoreCount = 0;
+            
+            sectionQuestions.forEach(qId => {
+                if (coreVsNoncoreAnalysis.question_scores[qId]) {
+                    // Core scores
+                    const coreScore = coreVsNoncoreAnalysis.question_scores[qId].Core[vendor];
+                    if (typeof coreScore === 'number') {
+                        coreTotalScore += coreScore;
+                        coreCount++;
+                    }
+                    
+                    // Non-core scores
+                    const noncoreScore = coreVsNoncoreAnalysis.question_scores[qId]['Non-core'][vendor];
+                    if (typeof noncoreScore === 'number') {
+                        noncoreTotalScore += noncoreScore;
+                        noncoreCount++;
+                    }
+                }
+            });
+            
+            // Calculate averages
+            coreScores.push(coreCount > 0 ? coreTotalScore / coreCount : 0);
+            noncoreScores.push(noncoreCount > 0 ? noncoreTotalScore / noncoreCount : 0);
+        });
+    }
+    
+    // Create chart
+    Highcharts.chart('sectionComparisonChart', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: chartTitle,
+            style: { fontSize: '16px' }
+        },
+        xAxis: {
+            categories: vendors,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            max: 5,
+            title: {
+                text: 'Average Score (1-5)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                grouping: true,
+                shadow: false,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Core',
+            data: coreScores,
+            color: ecobankColors.blue,
+            pointPadding: 0.3,
+            pointPlacement: -0.2
+        }, {
+            name: 'Non-core',
+            data: noncoreScores,
+            color: ecobankColors.green,
+            pointPadding: 0.3,
+            pointPlacement: 0.2
+        }]
+    });
 }
 
 // Create section sliders
@@ -421,18 +889,38 @@ function createSectionSliders() {
         const section = sections[sectionKey];
         const weight = sectionWeights[sectionKey];
         
-        const colDiv = document.createElement('div');
-        colDiv.className = 'col-md-4 mb-3';
+        // Get question information
+        const questionIds = section.questions || [];
+        const questionTexts = [];
         
-        colDiv.innerHTML = `
-            <div class="slider-label">
-                Section ${sectionKey}: ${section.title} <span class="slider-value" id="section${sectionKey}Weight">${weight}%</span>
+        for (let i = 0; i < Math.min(2, questionIds.length); i++) {
+            const question = questions.find(q => q.id === questionIds[i]);
+            if (question) {
+                questionTexts.push(question.title);
+            }
+        }
+        
+        // If there are more questions, indicate that
+        if (questionIds.length > 2) {
+            questionTexts.push(`+ ${questionIds.length - 2} more questions`);
+        }
+
+        // Create weight card
+        const weightCard = document.createElement('div');
+        weightCard.className = 'weight-card';
+        
+        weightCard.innerHTML = `
+            <div class="weight-header">
+                <h3 class="weight-title">Section ${sectionKey}: ${section.title}</h3>
+                <span class="weight-value" id="section${sectionKey}Weight">${weight}%</span>
             </div>
-            <input type="range" class="form-range" min="0" max="100" step="5" value="${weight}" id="section${sectionKey}Slider">
-            <small class="text-muted">${getShortSectionDescription(sectionKey, section)}</small>
+            <input type="range" class="custom-range" min="0" max="100" step="5" value="${weight}" id="section${sectionKey}Slider">
+            <div class="weight-questions">
+                ${questionTexts.map(question => `<div class="question-item">${question}</div>`).join('')}
+            </div>
         `;
         
-        sliderContainer.appendChild(colDiv);
+        sliderContainer.appendChild(weightCard);
         
         // Add event listener to the slider
         document.getElementById(`section${sectionKey}Slider`).addEventListener('input', function() {
@@ -590,7 +1078,6 @@ function resetWeights() {
     updateWeightedRankingsChart();
     updateExecutiveSummary();
 }
-
 // Set equal weights for all sections
 function setEqualWeights() {
     const weight = Math.floor(100 / Object.keys(sections).length);
@@ -625,6 +1112,8 @@ function initializeComponents() {
     updateTopSolutionsWidget();
     updateTopInsights();
     updateMethodologySection();
+     // Initialize participant comparison section
+    initializeParticipantComparison();
 }
 
 // Update the weighted rankings chart
@@ -1005,9 +1494,47 @@ function updateQuestionScoresChart(questionId) {
     
     const sortedVendors = Object.keys(filteredScores).sort((a, b) => filteredScores[b] - filteredScores[a]);
     
+    // Add Core vs Non-core data if available
+    let seriesData = [{
+        name: 'Average Score',
+        data: sortedVendors.map(vendor => filteredScores[vendor]),
+        colorByPoint: true
+    }];
+    
+    // Add Core and Non-core series if data is available
+    if (coreVsNoncoreAnalysis && coreVsNoncoreAnalysis.question_scores && coreVsNoncoreAnalysis.question_scores[qId]) {
+        const coreScores = coreVsNoncoreAnalysis.question_scores[qId].Core || {};
+        const noncoreScores = coreVsNoncoreAnalysis.question_scores[qId]['Non-core'] || {};
+        
+        seriesData = [
+            {
+                name: 'Core',
+                data: sortedVendors.map(vendor => coreScores[vendor] || 0),
+                color: ecobankColors.blue
+            },
+            {
+                name: 'Non-core',
+                data: sortedVendors.map(vendor => noncoreScores[vendor] || 0),
+                color: ecobankColors.green
+            },
+            {
+                name: 'Average',
+                data: sortedVendors.map(vendor => filteredScores[vendor]),
+                color: ecobankColors.gray,
+                type: 'line',
+                dashStyle: 'Dash',
+                marker: {
+                    lineWidth: 2,
+                    lineColor: ecobankColors.gray,
+                    fillColor: 'white'
+                }
+            }
+        ];
+    }
+    
     Highcharts.chart('questionScoresChart', {
         chart: {
-            type: 'bar'
+            type: 'column'
         },
         title: {
             text: `Q${qId}: ${question.title}`,
@@ -1018,47 +1545,33 @@ function updateQuestionScoresChart(questionId) {
         },
         xAxis: {
             categories: sortedVendors,
-            title: {
-                text: null
-            }
+            crosshair: true
         },
         yAxis: {
             min: 0,
             max: 5,
             title: {
-                text: 'Score (1-5)',
-                align: 'high'
+                text: 'Score (1-5)'
             }
         },
         tooltip: {
-            formatter: function() {
-                return `<b>${this.x}</b><br/>Score: ${this.y.toFixed(2)}`;
-            }
-        },
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true,
-                    format: '{y:.2f}'
-                }
-            }
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
         },
         legend: {
-            enabled: false
+            enabled: seriesData.length > 1
         },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Score',
-            data: sortedVendors.map(vendor => filteredScores[vendor]),
-            colorByPoint: true
-        }]
+        series: seriesData
     });
 }
 
 // Update the participant scores chart
 function updateParticipantScoresChart() {
+    // Create series data for each vendor
     const seriesData = vendors.map(vendor => ({
         name: vendor,
         data: participants.map(participant => {
@@ -1070,6 +1583,47 @@ function updateParticipantScoresChart() {
         })
     }));
     
+    // Create x-axis categories with participant types
+    const participantLabels = participants.map(participant => {
+        const type = participantTypes[participant] || '';
+        return type ? `${participant} (${type})` : participant;
+    });
+    
+    // Sort participants by type (Core first, then Non-core)
+    const sortedIndices = [];
+    
+    // First add Core participants
+    participants.forEach((participant, index) => {
+        if (participantTypes[participant] === 'Core') {
+            sortedIndices.push(index);
+        }
+    });
+    
+    // Then add Non-core participants
+    participants.forEach((participant, index) => {
+        if (participantTypes[participant] === 'Non-core') {
+            sortedIndices.push(index);
+        }
+    });
+    
+    // Then add any other participants
+    participants.forEach((participant, index) => {
+        if (participantTypes[participant] !== 'Core' && participantTypes[participant] !== 'Non-core') {
+            sortedIndices.push(index);
+        }
+    });
+    
+    // Sort series data
+    const sortedLabels = sortedIndices.map(i => participantLabels[i]);
+    const sortedSeriesData = vendors.map(vendor => {
+        const originalSeries = seriesData.find(s => s.name === vendor);
+        return {
+            name: vendor,
+            data: sortedIndices.map(i => originalSeries.data[i])
+        };
+    });
+    
+    // Create chart
     Highcharts.chart('participantScoresChart', {
         chart: {
             type: 'column'
@@ -1078,9 +1632,18 @@ function updateParticipantScoresChart() {
             text: 'Scores by Participant',
             style: { fontSize: '16px' }
         },
+        subtitle: {
+            text: 'Core vs Non-core Participant Evaluation'
+        },
         xAxis: {
-            categories: participants,
-            crosshair: true
+            categories: sortedLabels,
+            crosshair: true,
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '10px'
+                }
+            }
         },
         yAxis: {
             min: 0,
@@ -1103,7 +1666,7 @@ function updateParticipantScoresChart() {
                 borderWidth: 0
             }
         },
-        series: seriesData
+        series: sortedSeriesData
     });
 }
 
@@ -1125,12 +1688,39 @@ function populateParticipantTable() {
     const table = document.getElementById('participantScoresTable');
     table.innerHTML = '';
     
+    // Sort participants (Core first, then Non-core)
+    const sortedParticipants = [];
+    
+    // First add Core participants
     participants.forEach(participant => {
+        if (participantTypes[participant] === 'Core') {
+            sortedParticipants.push(participant);
+        }
+    });
+    
+    // Then add Non-core participants
+    participants.forEach(participant => {
+        if (participantTypes[participant] === 'Non-core') {
+            sortedParticipants.push(participant);
+        }
+    });
+    
+    // Then add any other participants
+    participants.forEach(participant => {
+        if (participantTypes[participant] !== 'Core' && participantTypes[participant] !== 'Non-core') {
+            sortedParticipants.push(participant);
+        }
+    });
+    
+    sortedParticipants.forEach(participant => {
         const row = document.createElement('tr');
         
-        // Participant name
+        // Participant name with type badge
         const nameCell = document.createElement('td');
-        nameCell.textContent = participant;
+        const participantType = participantTypes[participant] || '';
+        const typeBadge = participantType ? 
+            `<span class="participant-type-pill ${participantType.toLowerCase() === 'core' ? 'core' : 'noncore'}">${participantType}</span>` : '';
+        nameCell.innerHTML = `${participant} ${typeBadge}`;
         row.appendChild(nameCell);
         
         // Check if scores exist for this participant
@@ -1283,16 +1873,16 @@ function updateTopInsights() {
         getSectionPerformanceContent(sectionPerformance)
     );
     
-    // Create decision factors card
-    const factorsCard = createInsightCard(
-        'Participant Insights',
-        getParticipantInsightsContent()
+    // Create user type insights card
+    const userTypeCard = createInsightCard(
+        'User Type Insights',
+        getUserTypeInsightsContent()
     );
     
     // Add cards to container
     container.appendChild(createColumnDiv(strengthsCard));
     container.appendChild(createColumnDiv(performanceCard));
-    container.appendChild(createColumnDiv(factorsCard));
+    container.appendChild(createColumnDiv(userTypeCard));
 }
 
 // Create a column div for insight cards
@@ -1320,6 +1910,47 @@ function createInsightCard(title, content) {
     card.appendChild(cardBody);
     
     return card;
+}
+
+// Get user type insights content
+function getUserTypeInsightsContent() {
+    let content = '';
+    
+    if (coreVsNoncoreAnalysis && coreVsNoncoreAnalysis.top_vendor) {
+        const coreTopChoice = coreVsNoncoreAnalysis.top_vendor.Core;
+        const noncoreTopChoice = coreVsNoncoreAnalysis.top_vendor['Non-core'];
+        
+        if (coreTopChoice) {
+            content += `<p><strong>Core Preference:</strong> ${coreTopChoice} was highest-rated among Core users with a score of ${coreVsNoncoreAnalysis.overall_scores.Core[coreTopChoice].toFixed(2)}.</p>`;
+        }
+        
+        if (noncoreTopChoice) {
+            content += `<p><strong>Non-core Preference:</strong> ${noncoreTopChoice} was highest-rated among Non-core users with a score of ${coreVsNoncoreAnalysis.overall_scores['Non-core'][noncoreTopChoice].toFixed(2)}.</p>`;
+        }
+        
+        if (coreVsNoncoreAnalysis.agreement_level !== undefined) {
+            const agreementLevel = coreVsNoncoreAnalysis.agreement_level;
+            let agreementText = '';
+            
+            if (agreementLevel >= 0.8) {
+                agreementText = 'High agreement between Core and Non-core evaluations.';
+            } else if (agreementLevel >= 0.5) {
+                agreementText = 'Moderate agreement with some differences between Core and Non-core evaluations.';
+            } else {
+                agreementText = 'Low agreement with significant differences between Core and Non-core evaluations.';
+            }
+            
+            content += `<p><strong>Agreement Level:</strong> ${agreementText}</p>`;
+        }
+    }
+    
+    // Add user type statistics
+    content += `<div class="mt-3">
+        <p><span class="type-badge core">Core</span> ${coreParticipants.length} participants</p>
+        <p><span class="type-badge noncore">Non-core</span> ${noncoreParticipants.length} participants</p>
+    </div>`;
+    
+    return content;
 }
 
 // Calculate vendor strengths (top-scoring questions)
@@ -1443,114 +2074,14 @@ function getSectionPerformanceContent(sectionPerformance) {
     return content;
 }
 
-// Get HTML content for participant insights
-function getParticipantInsightsContent() {
-    let content = `<h6>Participant Statistics:</h6>`;
-    
-    // Calculate average scores by participant
-    const participantAverages = {};
-    participants.forEach(participant => {
-        let totalScore = 0;
-        let count = 0;
-        
-        vendors.forEach(vendor => {
-            const score = participantScores[participant]?.[vendor];
-            if (typeof score === 'number') {
-                totalScore += score;
-                count++;
-            }
-        });
-        
-        if (count > 0) {
-            participantAverages[participant] = totalScore / count;
-        }
-    });
-    
-    // Find highest and lowest scoring participants
-    const sortedParticipants = Object.keys(participantAverages)
-        .sort((a, b) => participantAverages[b] - participantAverages[a]);
-    
-    const highestScorer = sortedParticipants[0];
-    const lowestScorer = sortedParticipants[sortedParticipants.length - 1];
-    
-    content += `<ul class="list-unstyled">`;
-    
-    if (highestScorer) {
-        content += `<li>✓ Highest average scores: <strong>${highestScorer}</strong> (${participantAverages[highestScorer].toFixed(2)})</li>`;
-    }
-    
-    if (lowestScorer) {
-        content += `<li>✓ Lowest average scores: <strong>${lowestScorer}</strong> (${participantAverages[lowestScorer].toFixed(2)})</li>`;
-    }
-    
-    // Calculate score spread
-    const avgScoresByVendor = {};
-    vendors.forEach(vendor => {
-        let total = 0;
-        let count = 0;
-        
-        participants.forEach(participant => {
-            const score = participantScores[participant]?.[vendor];
-            if (typeof score === 'number') {
-                total += score;
-                count++;
-            }
-        });
-        
-        if (count > 0) {
-            avgScoresByVendor[vendor] = total / count;
-        }
-    });
-    
-    const highestVendor = Object.keys(avgScoresByVendor)
-        .sort((a, b) => avgScoresByVendor[b] - avgScoresByVendor[a])[0];
-    
-    if (highestVendor) {
-        content += `<li>✓ Highest rated solution overall: <strong>${highestVendor}</strong> (${avgScoresByVendor[highestVendor].toFixed(2)})</li>`;
-    }
-    
-    content += `</ul>`;
-    
-    // Add insight about consensus
-    const topChoices = {};
-    participants.forEach(participant => {
-        if (!participantScores[participant]) return;
-        
-        let topScore = -1;
-        let topVendor = null;
-        
-        vendors.forEach(vendor => {
-            const score = participantScores[participant][vendor];
-            if (typeof score === 'number' && score > topScore) {
-                topScore = score;
-                topVendor = vendor;
-            }
-        });
-        
-        if (topVendor) {
-            if (!topChoices[topVendor]) {
-                topChoices[topVendor] = 0;
-            }
-            topChoices[topVendor]++;
-        }
-    });
-    
-    const mostConsensus = Object.keys(topChoices)
-        .sort((a, b) => topChoices[b] - topChoices[a])[0];
-    
-    if (mostConsensus) {
-        const consensusPercent = Math.round((topChoices[mostConsensus] / participants.length) * 100);
-        content += `<p class="mt-3 mb-0"><strong>Consensus:</strong> ${mostConsensus} was the top choice for ${topChoices[mostConsensus]} of ${participants.length} participants (${consensusPercent}%).</p>`;
-    }
-    
-    return content;
-}
-
 // Update the methodology section
 function updateMethodologySection() {
     // Update participant count info
+    const coreCount = coreParticipants.length;
+    const noncoreCount = noncoreParticipants.length;
+    
     document.getElementById('participantCountInfo').textContent = 
-        `${participants.length} evaluators representing different departments and roles within the organization completed the assessment. Each evaluator rated ${vendors.length} solutions across ${questions.length} criteria using a 5-point scale:`;
+        `${participants.length} evaluators (${coreCount} Core and ${noncoreCount} Non-core) representing different departments and roles within the organization completed the assessment. Each evaluator rated ${vendors.length} solutions across ${questions.length} criteria using a 5-point scale:`;
     
     // Update section methodology
     const sectionMethodology = document.getElementById('sectionMethodology');
@@ -1581,4 +2112,550 @@ function getMethodologyDescription(sectionKey) {
     };
     
     return descriptions[sectionKey] || `evaluates key aspects of the solution for Section ${sectionKey}`;
+}
+// Initialize the participant comparison section
+function initializeParticipantComparison() {
+    // Populate participant selector
+    populateParticipantSelector();
+    
+    // Initialize with first participant if available
+    if (participants.length > 0) {
+        selectedParticipant = participants[0];
+        updateParticipantComparisonUI();
+    }
+    
+    // Add event listeners for section tabs
+    document.getElementById('questionViewBtn').addEventListener('click', function() {
+        document.getElementById('participantQuestionsView').style.display = 'block';
+        document.getElementById('participantSectionsView').style.display = 'none';
+        this.classList.add('active');
+        document.getElementById('sectionViewBtn').classList.remove('active');
+        updateParticipantQuestionsChart();
+    });
+    
+    document.getElementById('sectionViewBtn').addEventListener('click', function() {
+        document.getElementById('participantQuestionsView').style.display = 'none';
+        document.getElementById('participantSectionsView').style.display = 'block';
+        this.classList.add('active');
+        document.getElementById('questionViewBtn').classList.remove('active');
+        updateParticipantSectionsChart();
+    });
+    
+    // Populate question detail selector
+    populateQuestionDetailSelector();
+}
+
+// Populate the participant selector dropdown
+function populateParticipantSelector() {
+    const selector = document.getElementById('participantSelector');
+    selector.innerHTML = '';
+    
+    // Sort participants by type (Core first, then Non-core)
+    const sortedParticipants = [];
+    
+    // First add Core participants
+    participants.forEach(participant => {
+        if (participantTypes[participant] === 'Core') {
+            sortedParticipants.push(participant);
+        }
+    });
+    
+    // Then add Non-core participants
+    participants.forEach(participant => {
+        if (participantTypes[participant] === 'Non-core') {
+            sortedParticipants.push(participant);
+        }
+    });
+    
+    // Then add any other participants
+    participants.forEach(participant => {
+        if (participantTypes[participant] !== 'Core' && participantTypes[participant] !== 'Non-core') {
+            sortedParticipants.push(participant);
+        }
+    });
+    
+    // Add options to selector
+    sortedParticipants.forEach(participant => {
+        const option = document.createElement('option');
+        option.value = participant;
+        
+        const participantType = participantTypes[participant] || '';
+        option.textContent = participantType ? `${participant} (${participantType})` : participant;
+        
+        selector.appendChild(option);
+    });
+    
+    // Add event listener
+    selector.addEventListener('change', function() {
+        selectedParticipant = this.value;
+        updateParticipantComparisonUI();
+    });
+}
+
+// Populate question detail selector
+function populateQuestionDetailSelector() {
+    const selector = document.getElementById('questionDetailSelector');
+    selector.innerHTML = '';
+    
+    // Sort questions by ID
+    const sortedQuestions = [...questions].sort((a, b) => a.id - b.id);
+    
+    // Add options
+    sortedQuestions.forEach(question => {
+        const option = document.createElement('option');
+        option.value = question.id;
+        option.textContent = `Q${question.id}: ${question.title}`;
+        selector.appendChild(option);
+    });
+    
+    // Add event listener
+    selector.addEventListener('change', function() {
+        updateQuestionDetail(this.value);
+    });
+    
+    // Initialize with first question if available
+    if (sortedQuestions.length > 0) {
+        updateQuestionDetail(sortedQuestions[0].id);
+    }
+}
+
+// Update the entire participant comparison UI
+function updateParticipantComparisonUI() {
+    // Update participant type indicator
+    const participantType = participantTypes[selectedParticipant] || 'Unknown';
+    document.getElementById('selectedParticipantType').textContent = participantType;
+    document.getElementById('selectedParticipantType').className = 'participant-type-value ' + 
+        (participantType.toLowerCase() === 'core' ? 'text-primary' : 'text-success');
+    
+    // Update questions view
+    updateParticipantQuestionsChart();
+    
+    // Update question detail
+    const questionSelector = document.getElementById('questionDetailSelector');
+    if (questionSelector.value) {
+        updateQuestionDetail(questionSelector.value);
+    }
+    
+    // Update sections view
+    updateParticipantSectionsChart();
+    updateSectionComparisonTable();
+    
+    // Update participant preference chart
+    updateParticipantPreferenceChart();
+    
+    // Update individual vs group chart
+    updateParticipantVsGroupChart();
+}
+
+// Update participant questions chart
+function updateParticipantQuestionsChart() {
+    if (!selectedParticipant || !participantQuestionScores[selectedParticipant]) {
+        return;
+    }
+    
+    // Prepare data for the chart
+    const questionData = {};
+    
+    // Initialize data for each vendor
+    vendors.forEach(vendor => {
+        questionData[vendor] = [];
+    });
+    
+    // Sort questions by ID
+    const sortedQuestions = [...questions].sort((a, b) => a.id - b.id);
+    
+    // Collect scores for each question
+    sortedQuestions.forEach(question => {
+        const qId = question.id.toString();
+        
+        vendors.forEach(vendor => {
+            if (participantQuestionScores[selectedParticipant][qId] && 
+                participantQuestionScores[selectedParticipant][qId][vendor] !== undefined) {
+                questionData[vendor].push(participantQuestionScores[selectedParticipant][qId][vendor]);
+            } else {
+                questionData[vendor].push(0);
+            }
+        });
+    });
+    
+    // Create series data
+    const seriesData = vendors.map(vendor => ({
+        name: vendor,
+        data: questionData[vendor]
+    }));
+    
+    // Create the chart
+    Highcharts.chart('participantQuestionsChart', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: `${selectedParticipant}'s Question Scores by Solution`,
+            style: { fontSize: '16px' }
+        },
+        xAxis: {
+            categories: sortedQuestions.map(q => `Q${q.id}`),
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            max: 5,
+            title: {
+                text: 'Score (1-5)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">Question {point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: seriesData
+    });
+}
+
+// Update question detail
+function updateQuestionDetail(questionId) {
+    const qId = questionId.toString();
+    const question = questions.find(q => q.id.toString() === qId);
+    
+    if (!question || !selectedParticipant) {
+        return;
+    }
+    
+    // Update question detail content
+    const container = document.getElementById('questionDetailContent');
+    container.innerHTML = `
+        <h5>Q${qId}: ${question.title}</h5>
+        <p><strong>Section:</strong> ${question.section} - ${sections[question.section]?.title || ''}</p>
+        ${question.description ? `<p>${question.description}</p>` : ''}
+    `;
+    
+    // Update question detail table
+    const tableBody = document.getElementById('questionDetailTable').querySelector('tbody');
+    tableBody.innerHTML = '';
+    
+    vendors.forEach(vendor => {
+        const row = document.createElement('tr');
+        
+        // Vendor name
+        const vendorCell = document.createElement('td');
+        vendorCell.textContent = vendor;
+        row.appendChild(vendorCell);
+        
+        // Participant's score
+        const scoreCell = document.createElement('td');
+        const score = participantQuestionScores[selectedParticipant]?.[qId]?.[vendor] || 0;
+        scoreCell.textContent = score.toFixed(2);
+        row.appendChild(scoreCell);
+        
+        // Core average
+        const coreAvgCell = document.createElement('td');
+        const coreAvg = coreVsNoncoreAnalysis?.question_scores?.[qId]?.Core?.[vendor] || 0;
+        coreAvgCell.textContent = coreAvg.toFixed(2);
+        row.appendChild(coreAvgCell);
+        
+        // Non-core average
+        const noncoreAvgCell = document.createElement('td');
+        const noncoreAvg = coreVsNoncoreAnalysis?.question_scores?.[qId]?.['Non-core']?.[vendor] || 0;
+        noncoreAvgCell.textContent = noncoreAvg.toFixed(2);
+        row.appendChild(noncoreAvgCell);
+        
+        // Overall average
+        const overallAvgCell = document.createElement('td');
+        const overallAvg = questionScores[qId]?.[vendor] || 0;
+        overallAvgCell.textContent = overallAvg.toFixed(2);
+        row.appendChild(overallAvgCell);
+        
+        tableBody.appendChild(row);
+    });
+}
+
+// Update participant sections chart
+function updateParticipantSectionsChart() {
+    if (!selectedParticipant || !participantSectionScores[selectedParticipant]) {
+        return;
+    }
+    
+    // Prepare data for the chart
+    const sectionData = {};
+    
+    // Initialize data for each vendor
+    vendors.forEach(vendor => {
+        sectionData[vendor] = [];
+    });
+    
+    // Get sorted section keys
+    const sortedSections = Object.keys(sections).sort();
+    
+    // Collect scores for each section
+    sortedSections.forEach(sectionKey => {
+        vendors.forEach(vendor => {
+            if (participantSectionScores[selectedParticipant][sectionKey] && 
+                participantSectionScores[selectedParticipant][sectionKey][vendor] !== undefined) {
+                sectionData[vendor].push(participantSectionScores[selectedParticipant][sectionKey][vendor]);
+            } else {
+                sectionData[vendor].push(0);
+            }
+        });
+    });
+    
+    // Create series data
+    const seriesData = vendors.map(vendor => ({
+        name: vendor,
+        data: sectionData[vendor]
+    }));
+    
+    // Create the chart
+    Highcharts.chart('participantSectionsChart', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: `${selectedParticipant}'s Section Scores by Solution`,
+            style: { fontSize: '16px' }
+        },
+        xAxis: {
+            categories: sortedSections.map(s => `Section ${s}: ${sections[s].title}`),
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            max: 5,
+            title: {
+                text: 'Score (1-5)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: seriesData
+    });
+}
+
+// Update section comparison table
+function updateSectionComparisonTable() {
+    if (!selectedParticipant || !participantSectionScores[selectedParticipant]) {
+        return;
+    }
+    
+    const tableBody = document.getElementById('sectionComparisonTable').querySelector('tbody');
+    tableBody.innerHTML = '';
+    
+    // Get sorted section keys
+    const sortedSections = Object.keys(sections).sort();
+    
+    sortedSections.forEach(sectionKey => {
+        const row = document.createElement('tr');
+        
+        // Section name
+        const sectionCell = document.createElement('td');
+        sectionCell.textContent = `Section ${sectionKey}: ${sections[sectionKey].title}`;
+        row.appendChild(sectionCell);
+        
+        // Calculate participant's average for this section across all vendors
+        const participantAvgCell = document.createElement('td');
+        let totalScore = 0;
+        let count = 0;
+        
+        vendors.forEach(vendor => {
+            if (participantSectionScores[selectedParticipant][sectionKey] && 
+                participantSectionScores[selectedParticipant][sectionKey][vendor] !== undefined) {
+                totalScore += participantSectionScores[selectedParticipant][sectionKey][vendor];
+                count++;
+            }
+        });
+        
+        const participantAvg = count > 0 ? totalScore / count : 0;
+        participantAvgCell.textContent = participantAvg.toFixed(2);
+        row.appendChild(participantAvgCell);
+        
+        // Calculate Core average for this section
+        const coreAvgCell = document.createElement('td');
+        let coreTotal = 0;
+        let coreCount = 0;
+        
+        vendors.forEach(vendor => {
+            const sectionScore = sectionScores[sectionKey]?.[vendor] || 0;
+            if (sectionScore > 0) {
+                coreTotal += sectionScore;
+                coreCount++;
+            }
+        });
+        
+        const coreAvg = coreCount > 0 ? coreTotal / coreCount : 0;
+        coreAvgCell.textContent = coreAvg.toFixed(2);
+        row.appendChild(coreAvgCell);
+        
+        // Non-core average would be similar to core, but we don't have direct access to non-core section scores
+        // Using overall section scores as an approximation
+        const noncoreAvgCell = document.createElement('td');
+        noncoreAvgCell.textContent = coreAvg.toFixed(2); // Using same value as placeholder
+        row.appendChild(noncoreAvgCell);
+        
+        tableBody.appendChild(row);
+    });
+}
+
+// Update participant preference chart
+function updateParticipantPreferenceChart() {
+    if (!selectedParticipant || !participantScores[selectedParticipant]) {
+        return;
+    }
+    
+    // Prepare data for the chart
+    const scores = [];
+    
+    vendors.forEach(vendor => {
+        scores.push({
+            name: vendor,
+            y: participantScores[selectedParticipant][vendor] || 0
+        });
+    });
+    
+    // Sort by score (highest first)
+    scores.sort((a, b) => b.y - a.y);
+    
+    // Create the chart
+    Highcharts.chart('participantPreferenceChart', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: null
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            min: 0,
+            max: 5,
+            title: {
+                text: 'Average Score (1-5)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: '<b>{point.y:.2f}</b>'
+        },
+        series: [{
+            name: 'Score',
+            colorByPoint: true,
+            data: scores,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.2f}',
+                style: {
+                    fontSize: '10px'
+                }
+            }
+        }]
+    });
+}
+
+// Update individual vs group chart
+function updateParticipantVsGroupChart() {
+    if (!selectedParticipant || !participantScores[selectedParticipant]) {
+        return;
+    }
+    
+    // Prepare data
+    const participantData = [];
+    const groupData = [];
+    
+    // Calculate overall average scores
+    const overallAverages = {};
+    vendors.forEach(vendor => {
+        let totalScore = 0;
+        let count = 0;
+        
+        participants.forEach(participant => {
+            if (participantScores[participant] && typeof participantScores[participant][vendor] === 'number') {
+                totalScore += participantScores[participant][vendor];
+                count++;
+            }
+        });
+        
+        overallAverages[vendor] = count > 0 ? totalScore / count : 0;
+    });
+    
+    // Create data points
+    vendors.forEach(vendor => {
+        const participantScore = participantScores[selectedParticipant][vendor] || 0;
+        const groupScore = overallAverages[vendor];
+        
+        participantData.push(participantScore);
+        groupData.push(groupScore);
+    });
+    
+    // Create the chart
+    Highcharts.chart('participantVsGroupChart', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Individual vs Group Average Comparison',
+            style: { fontSize: '16px' }
+        },
+        xAxis: {
+            categories: vendors,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            max: 5,
+            title: {
+                text: 'Score (1-5)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                grouping: true,
+                shadow: false,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Participant Score',
+            data: participantData,
+            color: ecobankColors.blue,
+            pointPadding: 0.3,
+            pointPlacement: -0.2
+        }, {
+            name: 'Group Average',
+            data: groupData,
+            color: ecobankColors.green,
+            pointPadding: 0.3,
+            pointPlacement: 0.2
+        }]
+    });
 }

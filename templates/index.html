@@ -8,71 +8,450 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+        
+        :root {
+            /* Ecobank Colors */
+            --ecobank-light-blue: #0082BB;
+            --ecobank-dark-blue: #005B82;
+            --ecobank-light-green: #BED600;
+            --ecobank-dark-green: #669438;
+            --ecobank-gray: #464646;
+            --ecobank-light-gray: #EDEDED;
+            --ecobank-mid-gray: #979797;
+        
+            /* Shadow Variables */
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            
+            /* Animation Variables */
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Gilroy', sans-serif;
+            background: linear-gradient(135deg, #f5f9fd 0%, #eef7ff 100%);
             color: #333;
-            background-color: #f9f9f9;
-            padding-top: 20px;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 100px; /* Space for footer */
         }
-        .header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            border-radius: 8px;
+        
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, var(--ecobank-light-blue) 25%, transparent 25%),
+                linear-gradient(-45deg, var(--ecobank-light-blue) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, var(--ecobank-light-blue) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--ecobank-light-blue) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            opacity: 0.02;
+            z-index: -1;
         }
-        .section {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 25px;
-            margin-bottom: 30px;
-        }
-        .card {
-            transition: transform 0.2s;
-            margin-bottom: 20px;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .step-icon {
-            font-size: 2.5rem;
-            color: #3498db;
-            margin-bottom: 15px;
-        }
+        
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 9999;
+            backdrop-filter: blur(5px);
             flex-direction: column;
         }
+        
         .spinner-border {
             width: 3rem;
             height: 3rem;
+            color: var(--ecobank-light-blue);
             margin-bottom: 1rem;
         }
-        footer {
-            background-color: #2c3e50;
+        
+        .header {
+            background: linear-gradient(135deg, var(--ecobank-dark-blue), var(--ecobank-light-blue));
             color: white;
-            padding: 15px 0;
-            margin-top: 30px;
-            border-radius: 8px;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 5px 15px rgba(0, 91, 130, 0.2);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: 0;
+        }
+        
+        .header h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header p {
+            font-weight: 300;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+            margin-bottom: 40px;
+            transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+            border-top: 4px solid var(--ecobank-light-green);
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .section h3 {
+            color: var(--ecobank-dark-blue);
+            font-weight: 600;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--ecobank-light-gray);
+            padding-bottom: 15px;
+            position: relative;
+        }
+        
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--ecobank-light-blue), var(--ecobank-light-green));
+            border-radius: 3px;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all var(--transition-medium);
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        
+        .card-body {
+            padding: 25px;
+            background: linear-gradient(135deg, #ffffff 0%, #f9fdff 100%);
+        }
+        
+        .step-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--ecobank-light-blue), var(--ecobank-dark-blue));
+            color: white;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 130, 187, 0.3);
+            font-weight: 600;
+        }
+        
+        .card-title {
+            font-weight: 600;
+            color: var(--ecobank-dark-blue);
+            margin-bottom: 15px;
+        }
+        
+        .card-text {
+            color: var(--ecobank-gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all var(--transition-fast);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            transform: scale(0);
+            transition: transform 0.6s ease-out;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .btn:hover::after {
+            transform: scale(1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--ecobank-light-blue), var(--ecobank-dark-blue));
+            border: none;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--ecobank-dark-blue), var(--ecobank-light-blue));
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 130, 187, 0.4);
+        }
+        
+        .list-group-item {
+            border: none;
+            border-radius: 8px !important;
+            margin-bottom: 10px;
+            transition: all var(--transition-fast);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .list-group-item:hover {
+            background-color: #f8fcff;
+            transform: translateX(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .list-group-item h5 {
+            color: var(--ecobank-dark-blue);
+            font-weight: 600;
+        }
+        
         .template-link {
             text-decoration: none;
-            color: #3498db;
-            font-weight: bold;
+            color: var(--ecobank-light-blue);
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            position: relative;
         }
+        
+        .template-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--ecobank-light-blue);
+            transition: width var(--transition-fast);
+        }
+        
         .template-link:hover {
-            text-decoration: underline;
+            color: var(--ecobank-dark-blue);
+        }
+        
+        .template-link:hover::after {
+            width: 100%;
+        }
+        
+        .alert {
+            border: none;
+            border-radius: 10px;
+            padding: 15px 20px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        }
+        
+        .alert-info {
+            background: linear-gradient(135deg, #e1f5fe, #e3f2fd);
+            color: var(--ecobank-dark-blue);
+            border-left: 4px solid var(--ecobank-light-blue);
+        }
+        
+        .alert-success {
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            color: var(--ecobank-dark-green);
+            border-left: 4px solid var(--ecobank-light-green);
+        }
+        
+        .alert-warning {
+            background: linear-gradient(135deg, #fff8e1, #fffde7);
+            color: #ff8f00;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .modal-content {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--ecobank-light-blue), var(--ecobank-dark-blue));
+            color: white;
+            border-bottom: none;
+            padding: 20px 25px;
+        }
+        
+        .modal-title {
+            font-weight: 600;
+        }
+        
+        .modal-body {
+            padding: 25px;
+        }
+        
+        .modal-footer {
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding: 20px 25px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--ecobank-dark-blue);
+            margin-bottom: 8px;
+        }
+        
+        .form-control {
+            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            transition: all var(--transition-fast);
+        }
+        
+        .form-control:focus {
+            border-color: var(--ecobank-light-blue);
+            box-shadow: 0 0 0 3px rgba(0, 130, 187, 0.1);
+        }
+        
+        .form-text {
+            color: var(--ecobank-mid-gray);
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        
+        .card-header {
+            background: #f5f9fd;
+            font-weight: 600;
+            color: var(--ecobank-dark-blue);
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--ecobank-dark-blue), var(--ecobank-light-blue));
+            color: white;
+            padding: 20px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-radius: 30px 30px 0 0;
+            box-shadow: 0 -5px 15px rgba(0, 91, 130, 0.2);
+        }
+        
+        /* Animated Pulse Effect for "View Report" btn when enabled */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 130, 187, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 130, 187, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 130, 187, 0);
+            }
+        }
+        
+        #viewReportBtn:not([disabled]) {
+            animation: pulse 2s infinite;
+        }
+        
+        /* File input styling */
+        .form-control[type="file"] {
+            padding: 8px 12px;
+            line-height: 1.5;
+        }
+        
+        .form-control[type="file"]::file-selector-button {
+            background: linear-gradient(135deg, var(--ecobank-light-blue), var(--ecobank-dark-blue));
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            margin-right: 10px;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+        
+        .form-control[type="file"]::file-selector-button:hover {
+            background: linear-gradient(135deg, var(--ecobank-dark-blue), var(--ecobank-light-blue));
+            transform: translateY(-2px);
+        }
+        
+        /* Template section enhancements */
+        .template-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all var(--transition-medium);
+        }
+        
+        .template-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--ecobank-light-blue), var(--ecobank-light-green));
+        }
+        
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .template-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--ecobank-light-blue), var(--ecobank-light-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
     </style>
 </head>
@@ -103,7 +482,7 @@
                     <div class="card-body text-center">
                         <div class="step-icon">1</div>
                         <h5 class="card-title">Define Structure</h5>
-                        <p class="card-text">Set up your evaluation structure with sections and questions.</p>
+                        <p class="card-text">Set up your evaluation structure with sections, questions, and participant types.</p>
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#structureModal">Define Structure</button>
                     </div>
                 </div>
@@ -152,7 +531,7 @@
             <h3>Template Files</h3>
             <p>Download these templates to help you prepare your data:</p>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Sections Template</h5>
@@ -162,7 +541,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Questions Template</h5>
@@ -172,7 +551,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Participant Types Template</h5>
+                            <p class="card-text">Define Core and Non-core participants.</p>
+                            <a href="/static/templates/participant_types_template.xlsx" class="template-link" download>Download XLSX</a> | 
+                            <a href="/static/templates/participant_types_template.csv" class="template-link" download>Download CSV</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Data Template</h5>
@@ -194,7 +583,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="sectionsFile" class="form-label">Upload Sections</label>
                                 <input type="file" class="form-control" id="sectionsFile" accept=".xlsx,.csv">
@@ -212,13 +601,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="questionsFile" class="form-label">Upload Questions</label>
                                 <input type="file" class="form-control" id="questionsFile" accept=".xlsx,.csv">
                                 <div class="form-text">Upload a file with your questions definition.</div>
                             </div>
-                            <div class="card">
+                            <div class="card mb-3">
                                 <div class="card-header">Questions Template Format</div>
                                 <div class="card-body">
                                     <p>Your questions file should include:</p>
@@ -228,6 +617,24 @@
                                         <li><strong>section</strong>: Section ID this question belongs to</li>
                                         <li><strong>description</strong>: Optional description</li>
                                     </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="participantTypesFile" class="form-label">Upload Participant Types</label>
+                                <input type="file" class="form-control" id="participantTypesFile" accept=".xlsx,.csv">
+                                <div class="form-text">Upload a file with participant type definitions.</div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">Participant Types Template Format</div>
+                                <div class="card-body">
+                                    <p>Your participant types file should include:</p>
+                                    <ul>
+                                        <li><strong>Name</strong>: Participant's full name</li>
+                                        <li><strong>Type</strong>: Either "Core" or "Non-core"</li>
+                                    </ul>
+                                    <p class="text-muted small">Note: Names must match exactly with your evaluation data.</p>
                                 </div>
                             </div>
                         </div>
@@ -264,6 +671,7 @@
                         <!-- Hidden fields for structure files -->
                         <input type="file" id="hiddenSectionsFile" name="sections_file" style="display:none;">
                         <input type="file" id="hiddenQuestionsFile" name="questions_file" style="display:none;">
+                        <input type="file" id="hiddenParticipantTypesFile" name="participant_types_file" style="display:none;">
                         <div class="alert alert-info" id="structureAlert">
                             <strong>Note:</strong> No structure defined yet. The system will auto-generate a structure based on your data.
                         </div>
@@ -276,28 +684,28 @@
             </div>
         </div>
     </div>
-    <!-- Add this new modal at the end, before the footer -->
-<div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exportModalLabel">Export Reports</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Select a report to export to PDF:</p>
-                <div class="list-group" id="exportReportsList">
-                    <div class="text-center text-muted">
-                        <p>No reports available for export. Please generate a report first.</p>
+    <!-- Export Modal -->
+    <div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exportModalLabel">Export Reports</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Select a report to export to PDF:</p>
+                    <div class="list-group" id="exportReportsList">
+                        <div class="text-center text-muted">
+                            <p>No reports available for export. Please generate a report first.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <footer class="text-center">
         <div class="container">
@@ -308,16 +716,26 @@
         // Global variables to store form data
         let sectionsFile = null;
         let questionsFile = null;
+        let participantTypesFile = null;
         let latestReportUrl = null;
+        
         // Event listener for structure form submission
         document.getElementById('saveStructureBtn').addEventListener('click', function() {
             sectionsFile = document.getElementById('sectionsFile').files[0];
             questionsFile = document.getElementById('questionsFile').files[0];
+            participantTypesFile = document.getElementById('participantTypesFile').files[0];
+            
             // Update UI to show structure is defined
-            if (sectionsFile || questionsFile) {
+            if (sectionsFile || questionsFile || participantTypesFile) {
+                let definedItems = [];
+                if (sectionsFile) definedItems.push('Sections');
+                if (questionsFile) definedItems.push('Questions');
+                if (participantTypesFile) definedItems.push('Participant Types');
+                
                 document.getElementById('structureAlert').innerHTML = 
-                    '<strong>Success:</strong> Structure defined. Ready to upload evaluation data.';
+                    `<strong>Success:</strong> ${definedItems.join(', ')} defined. Ready to upload evaluation data.`;
                 document.getElementById('structureAlert').className = 'alert alert-success';
+                
                 // Close the modal
                 bootstrap.Modal.getInstance(document.getElementById('structureModal')).hide();
             } else {
@@ -326,22 +744,33 @@
                 document.getElementById('structureAlert').className = 'alert alert-warning';
             }
         });
+        
         // Event listener for data upload form submission
         document.getElementById('uploadForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
             // Show loading overlay
             document.getElementById('loadingOverlay').style.display = 'flex';
+            
             // Transfer structure files to hidden inputs
             if (sectionsFile) {
                 const dataTransfer = new DataTransfer();
                 dataTransfer.items.add(sectionsFile);
                 document.getElementById('hiddenSectionsFile').files = dataTransfer.files;
             }
+            
             if (questionsFile) {
                 const dataTransfer = new DataTransfer();
                 dataTransfer.items.add(questionsFile);
                 document.getElementById('hiddenQuestionsFile').files = dataTransfer.files;
             }
+            
+            if (participantTypesFile) {
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(participantTypesFile);
+                document.getElementById('hiddenParticipantTypesFile').files = dataTransfer.files;
+            }
+            
             // Submit form via AJAX
             const formData = new FormData(this);
             fetch('/process-excel', {
@@ -356,10 +785,13 @@
                     // Enable view report button
                     document.getElementById('viewReportBtn').disabled = false;
                     latestReportUrl = '/report-viewer?dataUrl=' + encodeURIComponent(data.data_url);
+                    
                     // Add to reports list
                     updateReportsList(data.data_url);
+                    
                     // Close the modal
                     bootstrap.Modal.getInstance(document.getElementById('uploadModal')).hide();
+                    
                     // Show success alert
                     alert('Data processed successfully! Click "View Report" to see your report.');
                 } else {
@@ -371,19 +803,23 @@
                 alert('An error occurred: ' + error);
             });
         });
+        
         // Event listener for view report button
         document.getElementById('viewReportBtn').addEventListener('click', function() {
             if (latestReportUrl) {
                 window.open(latestReportUrl, '_blank');
             }
         });
+        
         // Function to update reports list
         function updateReportsList(dataUrl) {
             const reportsList = document.getElementById('reportsList');
+            
             // Clear "no reports" message
             if (reportsList.querySelector('.text-muted')) {
                 reportsList.innerHTML = '';
             }
+            
             // Create report item
             const reportName = dataUrl.split('/').pop();
             const timestamp = new Date().toLocaleString();
@@ -399,60 +835,55 @@
                 <p class="mb-1">Click to view this interactive evaluation report.</p>
             `;
             reportsList.prepend(reportItem);
+            
+            // Update export list
+            updateExportReportsList();
         }
-
         
-// Function to update export reports list
-function updateExportReportsList() {
-    const exportList = document.getElementById('exportReportsList');
-    const reportsList = document.getElementById('reportsList');
-    
-    // Clone the reports list content
-    if (reportsList.querySelector('.text-muted')) {
-        // No reports yet
-        exportList.innerHTML = '<div class="text-center text-muted"><p>No reports available for export. Please generate a report first.</p></div>';
-    } else {
-        // Clear existing content
-        exportList.innerHTML = '';
-        
-        // Get all report links
-        const reportLinks = reportsList.querySelectorAll('a.list-group-item');
-        
-        // Create export links
-        reportLinks.forEach(link => {
-            const reportUrl = link.href;
-            const dataUrl = new URL(reportUrl).searchParams.get('dataUrl');
-            const reportName = link.querySelector('h5.mb-1').textContent.replace('Report: ', '');
+        // Function to update export reports list
+        function updateExportReportsList() {
+            const exportList = document.getElementById('exportReportsList');
+            const reportsList = document.getElementById('reportsList');
             
-            const exportItem = document.createElement('a');
-            exportItem.href = '/export-pdf?dataUrl=' + encodeURIComponent(dataUrl);
-            exportItem.className = 'list-group-item list-group-item-action';
-            exportItem.innerHTML = `
-                <div class="d-flex w-100 justify-content-between align-items-center">
-                    <div>
-                        <h6 class="mb-1">${reportName}</h6>
-                        <small>Click to export as PDF</small>
-                    </div>
-                    <i class="bi bi-file-pdf text-danger" style="font-size: 1.5rem;"></i>
-                </div>
-            `;
-            
-            exportList.appendChild(exportItem);
+            // Clone the reports list content
+            if (reportsList.querySelector('.text-muted')) {
+                // No reports yet
+                exportList.innerHTML = '<div class="text-center text-muted"><p>No reports available for export. Please generate a report first.</p></div>';
+            } else {
+                // Clear existing content
+                exportList.innerHTML = '';
+                
+                // Get all report links
+                const reportLinks = reportsList.querySelectorAll('a.list-group-item');
+                
+                // Create export links
+                reportLinks.forEach(link => {
+                    const reportUrl = link.href;
+                    const dataUrl = new URL(reportUrl).searchParams.get('dataUrl');
+                    const reportName = link.querySelector('h5.mb-1').textContent.replace('Report: ', '');
+                    
+                    const exportItem = document.createElement('a');
+                    exportItem.href = '/export-pdf?dataUrl=' + encodeURIComponent(dataUrl);
+                    exportItem.className = 'list-group-item list-group-item-action';
+                    exportItem.innerHTML = `
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">${reportName}</h6>
+                                <small>Click to export as PDF</small>
+                            </div>
+                            <i class="bi bi-file-pdf text-danger" style="font-size: 1.5rem;"></i>
+                        </div>
+                    `;
+                    
+                    exportList.appendChild(exportItem);
+                });
+            }
+        }
+        
+        // Add event listener for export modal
+        document.getElementById('exportModal').addEventListener('show.bs.modal', function () {
+            updateExportReportsList();
         });
-    }
-}
-
-// Add event listener for export modal
-document.getElementById('exportModal').addEventListener('show.bs.modal', function () {
-    updateExportReportsList();
-});
-
-// Update the updateReportsList function to also update the export list
-const originalUpdateReportsList = updateReportsList;
-updateReportsList = function(dataUrl) {
-    originalUpdateReportsList(dataUrl);
-    updateExportReportsList();
-};
     </script>
 </body>
 </html>
